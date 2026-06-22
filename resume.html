@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume — Mo Minoneshan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a href="index.html" class="brand">
+          Mo Minoneshan
+          <span class="brand-sub">Quantitative Research</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="notes.html">Notes</a></li>
+          <li><a href="resume.html" class="active">Resume</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="section-tight" style="padding-top: 56px">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Curriculum Vitae</p>
+            <h1 style="font-size: clamp(1.8rem, 3.4vw, 2.6rem); margin: 0">
+              Resume
+            </h1>
+          </div>
+          <a href="assets/resume.pdf" class="btn btn-primary">Download PDF</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight" style="padding-top: 8px">
+      <div class="container">
+        <div class="prose" style="max-width: 820px">
+          <h2>Education</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div>
+                <div class="role">M.S. Financial Engineering</div>
+                <div class="org">Columbia University</div>
+              </div>
+              <div class="when">Graduate</div>
+            </div>
+            <div class="timeline-item">
+              <div>
+                <div class="role">B.S. Mathematics</div>
+                <div class="org">University of Texas at Austin</div>
+              </div>
+              <div class="when">Undergraduate</div>
+            </div>
+          </div>
+
+          <h2>Experience</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div>
+                <div class="role">Product Management Analyst Intern</div>
+                <div class="org">USAA</div>
+              </div>
+              <div class="when">Internship</div>
+            </div>
+          </div>
+
+          <h2>Technical Skills</h2>
+          <ul>
+            <li>
+              <strong>Languages:</strong> Python, C++, SQL, R, MATLAB
+            </li>
+            <li>
+              <strong>Quant &amp; ML:</strong> NumPy, pandas, SciPy, PyTorch,
+              scikit-learn, statsmodels
+            </li>
+            <li>
+              <strong>Risk &amp; Pricing:</strong> VaR/ES, EVT, copulas, Monte
+              Carlo, scenario generation, covariance estimation
+            </li>
+            <li>
+              <strong>Tooling:</strong> Streamlit, Git, Docker, OpenMP,
+              Bloomberg
+            </li>
+          </ul>
+
+          <h2>Selected Projects</h2>
+          <ul>
+            <li>
+              <strong
+                ><a href="projects/stress-scenario-engine/index.html"
+                  >Hypothetical Stress Scenario Engine</a
+                ></strong
+              >
+              — conditional cross-asset scenario generation.
+            </li>
+            <li>
+              <strong
+                ><a href="projects/copula-var/index.html"
+                  >Copula-Tail VaR Engine</a
+                ></strong
+              >
+              — EVT + t-copula tail risk for multi-asset portfolios.
+            </li>
+            <li>
+              <strong
+                ><a href="projects/monte-carlo-pricer/index.html"
+                  >Monte Carlo Option Pricer</a
+                ></strong
+              >
+              — high-performance C++ pricing with OpenMP.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container foot-row">
+        <div>© <span id="year"></span> Mo Minoneshan</div>
+        <div class="foot-links">
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener"
+            >LinkedIn</a
+          >
+          <a href="https://github.com/Minoneshan" target="_blank" rel="noopener"
+            >GitHub</a
+          >
+          <a href="contact.html">Email</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

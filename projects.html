@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mo Minoneshan — Quantitative Finance &amp; Risk Research</title>
+    <title>Projects — Mo Minoneshan</title>
     <meta
       name="description"
-      content="Quantitative finance, risk modeling, and systematic research portfolio of Mo Minoneshan."
+      content="Applied quantitative finance, risk, and machine learning projects."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,8 +28,8 @@
           <span></span>
         </button>
         <ul class="nav-links">
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="projects.html">Projects</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html" class="active">Projects</a></li>
           <li><a href="notes.html">Notes</a></li>
           <li><a href="resume.html">Resume</a></li>
           <li><a href="contact.html">Contact</a></li>
@@ -37,59 +37,56 @@
       </div>
     </header>
 
-    <!-- ===== Hero ===== -->
-    <section class="hero">
+    <!-- ===== Intro ===== -->
+    <section class="section-tight" style="padding-top: 56px">
       <div class="container">
-        <p class="eyebrow">Quantitative Researcher</p>
-        <h1>
-          Quantitative Finance, Risk Modeling, and
-          <span class="accent-line">Systematic Research</span>
+        <p class="eyebrow">Portfolio</p>
+        <h1 style="font-size: clamp(1.8rem, 3.4vw, 2.6rem); margin: 0 0 12px">
+          Projects
         </h1>
-        <p class="lede">
-          I build data-driven models and tools for scenario analysis, portfolio
-          risk, derivatives pricing, macro-financial forecasting, and systematic
-          investment research.
+        <p class="muted" style="max-width: 64ch; font-size: 1.05rem">
+          A collection of applied quantitative finance, risk, and machine
+          learning projects. Each includes a live demo when available, technical
+          documentation, methodology, implementation notes, and results.
         </p>
-        <div class="btn-row">
-          <a href="projects.html" class="btn btn-primary">View Projects</a>
-          <a href="assets/resume.pdf" class="btn btn-secondary"
-            >Download Resume</a
-          >
-          <a
-            href="https://github.com/Minoneshan"
-            class="btn btn-ghost"
-            target="_blank"
-            rel="noopener"
-            >GitHub</a
-          >
-        </div>
       </div>
     </section>
 
-    <hr class="divider" />
-
-    <!-- ===== Selected Work ===== -->
-    <section class="section">
+    <!-- ===== Projects ===== -->
+    <section class="section-tight" style="padding-top: 16px">
       <div class="container">
-        <div class="section-head">
-          <h2>Selected Work</h2>
-          <a href="projects.html" class="link-more">All projects →</a>
+        <!-- Filters -->
+        <div class="filters">
+          <button class="filter-chip active" data-filter="all">All</button>
+          <button class="filter-chip" data-filter="risk">Risk</button>
+          <button class="filter-chip" data-filter="derivatives">
+            Derivatives
+          </button>
+          <button class="filter-chip" data-filter="ml">Machine Learning</button>
+          <button class="filter-chip" data-filter="macro">Macro</button>
+          <button class="filter-chip" data-filter="optimization">
+            Optimization
+          </button>
+          <button class="filter-chip" data-filter="cpp">C++</button>
         </div>
+
         <div class="card-grid">
-          <!-- Card 1 -->
-          <article class="project-card">
+          <!-- Project 1 -->
+          <article class="project-card" data-tags="risk optimization">
             <h3>
               <a href="projects/stress-scenario-engine/index.html"
                 >Hypothetical Stress Scenario Engine</a
               >
             </h3>
             <p class="desc">
-              Conditional scenario generation for cross-asset risk factors under
-              user-pinned shocks.
+              Cross-asset scenario generation under pinned factor shocks using
+              conditional Gaussian, copula, and PCA methods.
             </p>
             <div class="tags">
               <span class="tag">Python</span>
               <span class="tag">Streamlit</span>
+              <span class="tag">Risk</span>
+              <span class="tag">Conditional Gaussian</span>
               <span class="tag">Copulas</span>
               <span class="tag">PCA</span>
             </div>
@@ -114,20 +111,21 @@
             </div>
           </article>
 
-          <!-- Card 2 -->
-          <article class="project-card">
+          <!-- Project 2 -->
+          <article class="project-card" data-tags="risk">
             <h3>
               <a href="projects/copula-var/index.html">Copula-Tail VaR Engine</a>
             </h3>
             <p class="desc">
-              EVT + t-copula tail-risk engine for multi-asset portfolios with
-              Expected Shortfall.
+              Tail-risk model using EVT and t-copulas for multi-asset
+              portfolios, with VaR and Expected Shortfall.
             </p>
             <div class="tags">
               <span class="tag">Python</span>
               <span class="tag">EVT</span>
               <span class="tag">Copula</span>
               <span class="tag">VaR</span>
+              <span class="tag">Expected Shortfall</span>
             </div>
             <div class="card-actions">
               <a
@@ -150,21 +148,22 @@
             </div>
           </article>
 
-          <!-- Card 3 -->
-          <article class="project-card">
+          <!-- Project 3 -->
+          <article class="project-card" data-tags="derivatives cpp">
             <h3>
               <a href="projects/monte-carlo-pricer/index.html"
                 >Monte Carlo Option Pricer</a
               >
             </h3>
             <p class="desc">
-              High-performance C++ option pricing with OpenMP acceleration and
-              variance reduction.
+              High-performance C++ option pricing with OpenMP acceleration,
+              antithetic variates, and control variates.
             </p>
             <div class="tags">
               <span class="tag">C++</span>
               <span class="tag">OpenMP</span>
               <span class="tag">Derivatives</span>
+              <span class="tag">Monte Carlo</span>
             </div>
             <div class="card-actions">
               <a
@@ -187,21 +186,22 @@
             </div>
           </article>
 
-          <!-- Card 4 -->
-          <article class="project-card">
+          <!-- Project 4 -->
+          <article class="project-card" data-tags="ml macro">
             <h3>
               <a href="projects/cpi-transformer/index.html"
                 >CPI Transformer Risk Dashboard</a
               >
             </h3>
             <p class="desc">
-              Deep-learning inflation forecasting with an explainability
-              dashboard for macro risk.
+              Deep-learning inflation forecasting and explainability dashboard
+              for macro-financial risk monitoring.
             </p>
             <div class="tags">
               <span class="tag">PyTorch</span>
               <span class="tag">Transformers</span>
               <span class="tag">Macro</span>
+              <span class="tag">SHAP</span>
             </div>
             <div class="card-actions">
               <a
@@ -223,57 +223,6 @@
               >
             </div>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Research Areas ===== -->
-    <section class="dark-section section">
-      <div class="container">
-        <div class="section-head">
-          <h2>Research Areas</h2>
-        </div>
-        <div class="pill-grid">
-          <span class="pill">Systematic Macro</span>
-          <span class="pill">Tail Risk</span>
-          <span class="pill">Derivatives Pricing</span>
-          <span class="pill">Portfolio Construction</span>
-          <span class="pill">Scenario Generation</span>
-          <span class="pill">Stochastic Modeling</span>
-          <span class="pill">Machine Learning in Finance</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Experience ===== -->
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <h2>Experience &amp; Education</h2>
-          <a href="resume.html" class="link-more">Full resume →</a>
-        </div>
-        <div class="timeline" style="max-width: 760px">
-          <div class="timeline-item">
-            <div>
-              <div class="role">M.S. Financial Engineering</div>
-              <div class="org">Columbia University</div>
-            </div>
-            <div class="when">Graduate</div>
-          </div>
-          <div class="timeline-item">
-            <div>
-              <div class="role">Product Management Analyst Intern</div>
-              <div class="org">USAA</div>
-            </div>
-            <div class="when">Internship</div>
-          </div>
-          <div class="timeline-item">
-            <div>
-              <div class="role">B.S. Mathematics</div>
-              <div class="org">University of Texas at Austin</div>
-            </div>
-            <div class="when">Undergraduate</div>
-          </div>
         </div>
       </div>
     </section>

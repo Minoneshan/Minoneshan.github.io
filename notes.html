@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Research Notes — Mo Minoneshan</title>
+    <meta
+      name="description"
+      content="Technical notes and study writeups on quantitative finance topics."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a href="index.html" class="brand">
+          Mo Minoneshan
+          <span class="brand-sub">Quantitative Research</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="notes.html" class="active">Notes</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="section-tight" style="padding-top: 56px">
+      <div class="container">
+        <p class="eyebrow">Writing</p>
+        <h1 style="font-size: clamp(1.8rem, 3.4vw, 2.6rem); margin: 0 0 12px">
+          Research Notes
+        </h1>
+        <p class="muted" style="max-width: 64ch; font-size: 1.05rem">
+          Technical notes, derivations, and study writeups on quantitative
+          finance, risk, and machine learning. Short-form companions to the
+          longer project documentation.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-tight" style="padding-top: 8px">
+      <div class="container">
+        <div class="card-grid">
+          <article class="project-card">
+            <h3><a href="#">Understanding EWMA vs. Shrinkage Covariance</a></h3>
+            <p class="desc">
+              When exponential weighting helps, when shrinkage helps, and how to
+              combine both for stable risk estimates.
+            </p>
+            <div class="tags">
+              <span class="tag">Risk</span>
+              <span class="tag">Covariance</span>
+            </div>
+            <div class="card-actions">
+              <a href="#" class="btn btn-secondary btn-sm">Read note →</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <h3><a href="#">A Practical Intro to t-Copulas</a></h3>
+            <p class="desc">
+              Modeling joint tail dependence across assets and why Gaussian
+              copulas understate crisis co-movements.
+            </p>
+            <div class="tags">
+              <span class="tag">Copula</span>
+              <span class="tag">Tail Risk</span>
+            </div>
+            <div class="card-actions">
+              <a href="#" class="btn btn-secondary btn-sm">Read note →</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <h3><a href="#">Variance Reduction in Monte Carlo Pricing</a></h3>
+            <p class="desc">
+              Antithetic variates, control variates, and quasi-random sequences
+              for faster derivative pricing.
+            </p>
+            <div class="tags">
+              <span class="tag">Derivatives</span>
+              <span class="tag">Monte Carlo</span>
+            </div>
+            <div class="card-actions">
+              <a href="#" class="btn btn-secondary btn-sm">Read note →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container foot-row">
+        <div>© <span id="year"></span> Mo Minoneshan</div>
+        <div class="foot-links">
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener"
+            >LinkedIn</a
+          >
+          <a href="https://github.com/Minoneshan" target="_blank" rel="noopener"
+            >GitHub</a
+          >
+          <a href="contact.html">Email</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

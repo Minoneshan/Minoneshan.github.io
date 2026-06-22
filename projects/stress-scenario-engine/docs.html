@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentation — Stress Scenario Engine</title>
+    <meta
+      name="description"
+      content="Book-style technical documentation for the Hypothetical Stress Scenario Engine."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- KaTeX for math -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+      integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
+      crossorigin="anonymous"
+    />
+    <!-- Prism for code highlighting -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css"
+    />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/docs.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a href="../../index.html" class="brand">
+          Mo Minoneshan
+          <span class="brand-sub">Quantitative Research</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../projects.html" class="active">Projects</a></li>
+          <li><a href="../../notes.html">Notes</a></li>
+          <li><a href="../../resume.html">Resume</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="docs-shell">
+      <!-- ===== Sidebar ===== -->
+      <aside class="docs-sidebar" id="docs-sidebar">
+        <div class="docs-search">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input
+            id="docs-search-input"
+            type="text"
+            placeholder="Search this documentation…"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="docs-title-block">
+          <div class="doc-name">Stress Scenario Engine</div>
+          <div class="doc-meta">Mo Minoneshan · 2026</div>
+        </div>
+
+        <ul class="docs-nav">
+          <li><a href="#overview">Overview</a></li>
+
+          <li class="nav-part">Front Matter</li>
+          <li>
+            <a href="#executive-summary"
+              ><span class="num">0</span>Executive Summary</a
+            >
+          </li>
+          <li><a href="#motivation"><span class="num">1</span>Motivation</a></li>
+
+          <li class="nav-part">Risk Factors &amp; Data</li>
+          <li>
+            <a href="#risk-factor-universe"
+              ><span class="num">2</span>Risk Factor Universe</a
+            >
+          </li>
+          <li class="sub">
+            <a href="#equities"><span class="num">2.1</span>Equities</a>
+          </li>
+          <li class="sub">
+            <a href="#rates"><span class="num">2.2</span>Rates</a>
+          </li>
+          <li class="sub">
+            <a href="#fx"><span class="num">2.3</span>FX</a>
+          </li>
+          <li class="sub">
+            <a href="#commodities"><span class="num">2.4</span>Commodities</a>
+          </li>
+          <li class="sub">
+            <a href="#futures-mapping"
+              ><span class="num">2.5</span>Futures Mapping</a
+            >
+          </li>
+          <li>
+            <a href="#data-pipeline"><span class="num">3</span>Data Pipeline</a>
+          </li>
+
+          <li class="nav-part">Methodology</li>
+          <li>
+            <a href="#baseline-model"
+              ><span class="num">4</span>Baseline Model</a
+            >
+          </li>
+          <li class="sub">
+            <a href="#conditional-gaussian"
+              ><span class="num">4.1</span>Conditional Gaussian</a
+            >
+          </li>
+          <li class="sub">
+            <a href="#conditional-mean"
+              ><span class="num">4.2</span>Conditional Mean</a
+            >
+          </li>
+          <li class="sub">
+            <a href="#conditional-covariance"
+              ><span class="num">4.3</span>Conditional Covariance</a
+            >
+          </li>
+          <li class="sub">
+            <a href="#sampling"><span class="num">4.4</span>Sampling Scenarios</a>
+          </li>
+          <li>
+            <a href="#covariance-estimation"
+              ><span class="num">5</span>Covariance Estimation</a
+            >
+          </li>
+          <li class="sub">
+            <a href="#ewma"><span class="num">5.1</span>EWMA Covariance</a>
+          </li>
+          <li class="sub">
+            <a href="#shrinkage"><span class="num">5.2</span>Shrinkage</a>
+          </li>
+          <li>
+            <a href="#extensions"><span class="num">6</span>Extensions</a>
+          </li>
+          <li class="sub">
+            <a href="#copula"><span class="num">6.1</span>Copula Extension</a>
+          </li>
+          <li class="sub">
+            <a href="#pca"><span class="num">6.2</span>PCA Conditioning</a>
+          </li>
+
+          <li class="nav-part">Application</li>
+          <li>
+            <a href="#implementation"
+              ><span class="num">7</span>Implementation</a
+            >
+          </li>
+          <li><a href="#demo"><span class="num">8</span>Demo Walkthrough</a></li>
+          <li><a href="#results"><span class="num">9</span>Results</a></li>
+          <li>
+            <a href="#validation"><span class="num">10</span>Validation</a>
+          </li>
+          <li>
+            <a href="#limitations"><span class="num">11</span>Limitations</a>
+          </li>
+          <li>
+            <a href="#future-work"><span class="num">12</span>Future Work</a>
+          </li>
+
+          <li class="nav-part">Appendix</li>
+          <li>
+            <a href="#appendix-a"><span class="num">A</span>Derivations</a>
+          </li>
+          <li>
+            <a href="#appendix-b"><span class="num">B</span>API Reference</a>
+          </li>
+          <li>
+            <a href="#appendix-c"><span class="num">C</span>Factor Dictionary</a>
+          </li>
+        </ul>
+
+        <p class="no-results">No matching sections.</p>
+      </aside>
+
+      <!-- ===== Main ===== -->
+      <main class="docs-main">
+        <button class="docs-sidebar-toggle" aria-label="Toggle contents">
+          ☰ Contents
+        </button>
+
+        <div class="docs-breadcrumb">
+          <a href="../../projects.html">Projects</a> /
+          <a href="index.html">Stress Scenario Engine</a> / Documentation
+        </div>
+
+        <div class="docs-header">
+          <h1>Hypothetical Stress Scenario Engine</h1>
+          <div class="author">Mo Minoneshan</div>
+          <div class="date">2026</div>
+        </div>
+
+        <div class="docs-actions">
+          <a
+            href="https://github.com/Minoneshan"
+            class="btn btn-secondary btn-sm"
+            target="_blank"
+            rel="noopener"
+            >GitHub</a
+          >
+          <a href="demo.html" class="btn btn-secondary btn-sm">Demo</a>
+          <a href="#" class="btn btn-ghost btn-sm">PDF Report</a>
+        </div>
+
+        <div class="docs-content">
+          <section id="overview">
+            <h2><span class="sec-num"></span>Overview</h2>
+            <p>
+              This project builds a scenario engine that generates statistically
+              consistent cross-asset market scenarios conditional on a small set
+              of user-specified shocks. Given a partition of the risk-factor
+              vector into <em>pinned</em> factors (whose moves are fixed by the
+              user) and <em>free</em> factors, the engine estimates the
+              conditional distribution of the free factors and samples coherent
+              scenarios from it.
+            </p>
+            <div class="callout">
+              <p class="callout-title">Model</p>
+              <p style="margin: 0; color: var(--text)">
+                Partition the factor returns as
+                \(X = (X_p, X_f)\), pinned and free. The engine estimates the
+                conditional distribution \(X_f \mid X_p = x_p\) and returns its
+                conditional mean, conditional covariance, and simulated
+                scenarios.
+              </p>
+            </div>
+          </section>
+
+          <section id="executive-summary">
+            <h2><span class="sec-num">0</span>Executive Summary</h2>
+            <p>
+              The engine answers questions of the form: "If equities fall 20%
+              and 10Y rates rise 150 bps, what is the implied move in FX,
+              commodities, and related futures?" It uses a conditional
+              multivariate Gaussian as a baseline, with EWMA and shrinkage
+              covariance estimators, and optional copula and PCA extensions for
+              heavier tails and dimensionality reduction.
+            </p>
+          </section>
+
+          <section id="motivation">
+            <h2><span class="sec-num">1</span>Motivation</h2>
+            <p>
+              Traditional stress tests often shock factors independently, which
+              produces incoherent scenarios that ignore historical co-movement.
+              A conditional approach preserves the empirical correlation
+              structure: pinning a few factors implies a distribution over the
+              rest that respects how markets actually move together.
+            </p>
+          </section>
+
+          <section id="risk-factor-universe">
+            <h2><span class="sec-num">2</span>Risk Factor Universe</h2>
+            <p>
+              The factor set spans the major liquid asset classes, mapped to
+              tradable instruments where possible.
+            </p>
+          </section>
+
+          <section id="equities">
+            <h3><span class="sec-num">2.1</span>Equities</h3>
+            <p>
+              Broad equity indices and futures (e.g. S&amp;P 500, Nasdaq 100),
+              expressed as log returns.
+            </p>
+          </section>
+
+          <section id="rates">
+            <h3><span class="sec-num">2.2</span>Rates</h3>
+            <p>
+              Government yields across the curve; shocks are expressed in basis
+              points and converted to return space for estimation.
+            </p>
+          </section>
+
+          <section id="fx">
+            <h3><span class="sec-num">2.3</span>FX</h3>
+            <p>Major currency pairs against USD.</p>
+          </section>
+
+          <section id="commodities">
+            <h3><span class="sec-num">2.4</span>Commodities</h3>
+            <p>Energy and metals front-month futures.</p>
+          </section>
+
+          <section id="futures-mapping">
+            <h3><span class="sec-num">2.5</span>Futures Mapping</h3>
+            <p>
+              Each factor maps to a front-month contract; rolls are handled to
+              produce a continuous return series.
+            </p>
+          </section>
+
+          <section id="data-pipeline">
+            <h2><span class="sec-num">3</span>Data Pipeline</h2>
+            <p>
+              Prices are pulled, aligned on a common calendar, converted to log
+              returns, and cleaned for missing data before covariance
+              estimation.
+            </p>
+            <pre><code class="language-python">import numpy as np
+import pandas as pd
+
+prices = load_prices(tickers)            # wide DataFrame
+returns = np.log(prices).diff().dropna() # log returns
+returns = returns.loc[:, valid_columns]  # drop sparse factors</code></pre>
+          </section>
+
+          <section id="baseline-model">
+            <h2><span class="sec-num">4</span>Baseline Model</h2>
+            <p>
+              Assume factor returns are jointly Gaussian with mean
+              \(\mu\) and covariance \(\Sigma\). Partition into pinned
+              \((p)\) and free \((f)\) blocks:
+            </p>
+            <p>
+              $$
+              \begin{bmatrix} X_f \\ X_p \end{bmatrix}
+              \sim \mathcal{N}\!\left(
+              \begin{bmatrix} \mu_f \\ \mu_p \end{bmatrix},
+              \begin{bmatrix}
+              \Sigma_{ff} & \Sigma_{fp} \\
+              \Sigma_{pf} & \Sigma_{pp}
+              \end{bmatrix}
+              \right).
+              $$
+            </p>
+          </section>
+
+          <section id="conditional-gaussian">
+            <h3><span class="sec-num">4.1</span>Conditional Gaussian</h3>
+            <p>
+              The conditional law of the free factors given the pinned shock
+              \(X_p = x_p\) is again Gaussian.
+            </p>
+          </section>
+
+          <section id="conditional-mean">
+            <h3><span class="sec-num">4.2</span>Conditional Mean</h3>
+            <p>
+              $$
+              \mathbb{E}[X_f \mid X_p = x_p] =
+              \mu_f + \Sigma_{fp}\Sigma_{pp}^{-1}(x_p - \mu_p).
+              $$
+            </p>
+          </section>
+
+          <section id="conditional-covariance">
+            <h3><span class="sec-num">4.3</span>Conditional Covariance</h3>
+            <p>
+              $$
+              \operatorname{Cov}(X_f \mid X_p) =
+              \Sigma_{ff} - \Sigma_{fp}\Sigma_{pp}^{-1}\Sigma_{pf}.
+              $$
+            </p>
+            <p>
+              This is the Schur complement of \(\Sigma_{pp}\); it captures the
+              residual uncertainty in the free factors once the pinned shocks
+              are known.
+            </p>
+          </section>
+
+          <section id="sampling">
+            <h3><span class="sec-num">4.4</span>Sampling Scenarios</h3>
+            <p>
+              Scenarios are drawn from the conditional Gaussian via a Cholesky
+              factor of the conditional covariance.
+            </p>
+            <pre><code class="language-python">mu_cond = mu_f + Sfp @ np.linalg.solve(Spp, x_p - mu_p)
+cov_cond = Sff - Sfp @ np.linalg.solve(Spp, Spf)
+L = np.linalg.cholesky(cov_cond)
+Z = rng.standard_normal((n_scenarios, len(mu_cond)))
+scenarios = mu_cond + Z @ L.T</code></pre>
+          </section>
+
+          <section id="covariance-estimation">
+            <h2><span class="sec-num">5</span>Covariance Estimation</h2>
+            <p>
+              The quality of the conditional distribution depends entirely on
+              \(\Sigma\). Two robust estimators are supported.
+            </p>
+          </section>
+
+          <section id="ewma">
+            <h3><span class="sec-num">5.1</span>EWMA Covariance</h3>
+            <p>
+              Exponentially weighted covariance gives more weight to recent
+              observations, with decay \(\lambda\):
+            </p>
+            <p>
+              $$
+              \Sigma_t = (1-\lambda)\, r_t r_t^\top + \lambda\, \Sigma_{t-1}.
+              $$
+            </p>
+          </section>
+
+          <section id="shrinkage">
+            <h3><span class="sec-num">5.2</span>Shrinkage</h3>
+            <p>
+              Ledoit–Wolf shrinkage pulls the sample covariance toward a
+              structured target \(F\) to reduce estimation error:
+            </p>
+            <p>
+              $$
+              \hat\Sigma = \delta F + (1-\delta)\, S, \qquad \delta \in [0,1].
+              $$
+            </p>
+          </section>
+
+          <section id="extensions">
+            <h2><span class="sec-num">6</span>Extensions</h2>
+            <p>
+              The Gaussian baseline understates joint tail moves. Two extensions
+              address this.
+            </p>
+          </section>
+
+          <section id="copula">
+            <h3><span class="sec-num">6.1</span>Copula Extension</h3>
+            <p>
+              A Student-t copula couples the marginals with heavier joint tails,
+              so extreme co-movements appear more often than under a Gaussian
+              copula.
+            </p>
+          </section>
+
+          <section id="pca">
+            <h3><span class="sec-num">6.2</span>PCA Conditioning</h3>
+            <p>
+              Conditioning in principal-component space reduces dimensionality
+              and stabilises the inversion of \(\Sigma_{pp}\) when factors are
+              highly collinear.
+            </p>
+          </section>
+
+          <section id="implementation">
+            <h2><span class="sec-num">7</span>Implementation</h2>
+            <p>
+              The engine exposes a small API. The core entry point generates
+              scenarios from a dictionary of pinned shocks.
+            </p>
+            <pre><code class="language-python">scenarios = engine.generate(
+    pinned_factors={"NQ1": -0.20, "TY1": 0.015},
+    n_scenarios=1000,
+    method="t-copula",
+)</code></pre>
+          </section>
+
+          <section id="demo">
+            <h2><span class="sec-num">8</span>Demo Walkthrough</h2>
+            <p>
+              In the
+              <a href="demo.html">interactive demo</a> you select factors, pin
+              shocks (e.g. Nasdaq −20%, 10Y +150 bps), generate scenarios, view
+              the table, and export to CSV.
+            </p>
+          </section>
+
+          <section id="results">
+            <h2><span class="sec-num">9</span>Results</h2>
+            <p>
+              Conditional scenarios reproduce realistic co-movements: an equity
+              sell-off pulls credit-sensitive factors down and safe-haven
+              factors up, consistent with historical stress episodes.
+            </p>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Factor</th>
+                  <th>Conditional mean</th>
+                  <th>Std (free)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>S&amp;P 500</td>
+                  <td>−14.8%</td>
+                  <td>3.1%</td>
+                </tr>
+                <tr>
+                  <td>EURUSD</td>
+                  <td>−2.6%</td>
+                  <td>1.4%</td>
+                </tr>
+                <tr>
+                  <td>Gold</td>
+                  <td>+4.2%</td>
+                  <td>2.0%</td>
+                </tr>
+              </tbody>
+            </table>
+            <figcaption>
+              Illustrative conditional moves under a Nasdaq −20% / 10Y +150 bps
+              shock.
+            </figcaption>
+          </section>
+
+          <section id="validation">
+            <h2><span class="sec-num">10</span>Validation</h2>
+            <p>
+              Validation covers backtesting of conditional means, stress
+              coherence checks, and correlation preservation between simulated
+              and historical scenarios.
+            </p>
+          </section>
+
+          <section id="limitations">
+            <h2><span class="sec-num">11</span>Limitations</h2>
+            <div class="callout warn">
+              <p class="callout-title">Assumptions</p>
+              <p style="margin: 0; color: var(--text)">
+                The Gaussian baseline assumes linear dependence and stable
+                covariance; regime shifts and structural breaks can degrade the
+                conditional estimates. Copula extensions mitigate but do not
+                eliminate this.
+              </p>
+            </div>
+          </section>
+
+          <section id="future-work">
+            <h2><span class="sec-num">12</span>Future Work</h2>
+            <ul>
+              <li>Regime-switching covariance models</li>
+              <li>Nonlinear conditioning via flexible copulas</li>
+              <li>Factor-level liquidity and slippage overlays</li>
+            </ul>
+          </section>
+
+          <section id="appendix-a">
+            <h2><span class="sec-num">A</span>Mathematical Derivations</h2>
+            <p>
+              The conditional Gaussian formulas follow from completing the
+              square in the joint density; see any multivariate statistics
+              reference for the full derivation of the conditional mean and the
+              Schur-complement covariance.
+            </p>
+          </section>
+
+          <section id="appendix-b">
+            <h2><span class="sec-num">B</span>API Reference</h2>
+            <pre><code class="language-python">class ScenarioEngine:
+    def fit(self, returns: pd.DataFrame,
+            cov: str = "ewma") -> "ScenarioEngine": ...
+    def generate(self, pinned_factors: dict[str, float],
+                 n_scenarios: int = 1000,
+                 method: str = "gaussian") -> pd.DataFrame: ...
+    def export_csv(self, path: str) -> None: ...</code></pre>
+          </section>
+
+          <section id="appendix-c">
+            <h2><span class="sec-num">C</span>Factor Dictionary</h2>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Factor</th>
+                  <th>Units</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>NQ1</code></td>
+                  <td>Nasdaq 100 front future</td>
+                  <td>log return</td>
+                </tr>
+                <tr>
+                  <td><code>TY1</code></td>
+                  <td>10Y Treasury future</td>
+                  <td>bps → return</td>
+                </tr>
+                <tr>
+                  <td><code>CL1</code></td>
+                  <td>WTI crude front future</td>
+                  <td>log return</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <!-- Pager -->
+          <nav class="docs-pager">
+            <a href="index.html">
+              <span class="pager-label">← Back</span>
+              <span class="pager-title">Project landing page</span>
+            </a>
+            <a href="demo.html" class="next">
+              <span class="pager-label">Next →</span>
+              <span class="pager-title">Interactive demo</span>
+            </a>
+          </nav>
+        </div>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container foot-row">
+        <div>© <span id="year"></span> Mo Minoneshan</div>
+        <div class="foot-links">
+          <a href="../../projects.html">Projects</a>
+          <a href="https://github.com/Minoneshan" target="_blank" rel="noopener"
+            >GitHub</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/docs.js"></script>
+    <!-- Prism -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <!-- KaTeX -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body, {delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '\\(', right: '\\)', display: false}
+      ]});"
+    ></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

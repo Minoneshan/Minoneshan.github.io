@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hypothetical Stress Scenario Engine — Mo Minoneshan</title>
+    <meta
+      name="description"
+      content="A cross-asset risk engine that generates statistically consistent market scenarios conditional on user-specified shocks."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a href="../../index.html" class="brand">
+          Mo Minoneshan
+          <span class="brand-sub">Quantitative Research</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../projects.html" class="active">Projects</a></li>
+          <li><a href="../../notes.html">Notes</a></li>
+          <li><a href="../../resume.html">Resume</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="section" style="padding-bottom: 32px">
+      <div class="container">
+        <p class="muted" style="font-size: 13px; margin: 0 0 14px">
+          <a href="../../projects.html">Projects</a> /
+          Stress Scenario Engine
+        </p>
+        <h1 style="font-size: clamp(1.9rem, 3.6vw, 2.7rem); margin: 0 0 16px">
+          Hypothetical Stress Scenario Engine
+        </h1>
+        <p class="lede" style="margin-bottom: 28px">
+          A cross-asset risk engine that generates statistically consistent
+          market scenarios conditional on user-specified shocks.
+        </p>
+        <div class="btn-row">
+          <a href="demo.html" class="btn btn-primary">Launch Demo</a>
+          <a href="docs.html" class="btn btn-secondary">Read Documentation</a>
+          <a
+            href="https://github.com/Minoneshan"
+            class="btn btn-ghost"
+            target="_blank"
+            rel="noopener"
+            >View GitHub</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Body -->
+    <section class="section">
+      <div class="container">
+        <div class="prose">
+          <h2>Problem</h2>
+          <p>Risk managers often need to ask:</p>
+          <div class="callout">
+            <p style="margin: 0; color: var(--text)">
+              "If equities fall 20% and rates rise 150 bps, what should happen to
+              FX, commodities, and related futures?"
+            </p>
+          </div>
+          <p>
+            This project builds a conditional scenario engine that estimates
+            realistic co-movements across risk factors, so a handful of pinned
+            shocks propagate consistently across the full factor universe.
+          </p>
+
+          <h2>Methods</h2>
+          <ul>
+            <li>Conditional multivariate Gaussian</li>
+            <li>EWMA covariance estimation</li>
+            <li>Ledoit–Wolf shrinkage covariance</li>
+            <li>Gaussian copula</li>
+            <li>Student-t copula</li>
+            <li>PCA conditioning</li>
+          </ul>
+
+          <h2>Outputs</h2>
+          <ul>
+            <li>Scenario table across all risk factors</li>
+            <li>Conditional mean shock vector</li>
+            <li>Simulated scenario distribution</li>
+            <li>CSV export</li>
+            <li>Validation summary</li>
+          </ul>
+
+          <div class="btn-row" style="margin-top: 36px">
+            <a href="demo.html" class="btn btn-primary">Launch Demo</a>
+            <a href="docs.html" class="btn btn-secondary"
+              >Read Full Documentation</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container foot-row">
+        <div>© <span id="year"></span> Mo Minoneshan</div>
+        <div class="foot-links">
+          <a href="../../projects.html">Projects</a>
+          <a href="https://github.com/Minoneshan" target="_blank" rel="noopener"
+            >GitHub</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
