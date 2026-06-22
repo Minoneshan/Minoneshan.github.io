@@ -17,115 +17,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" />
     <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/docs.css" />
     <style>
-      .docs-layout {
-        display: grid;
-        grid-template-columns: 280px 1fr;
-        gap: 32px;
-        margin: 32px 0;
-      }
-
-      .docs-sidebar {
-        position: sticky;
-        top: 100px;
-        height: fit-content;
-        background: var(--bg-soft);
-        padding: 20px;
-        border-radius: 8px;
-        max-height: calc(100vh - 150px);
-        overflow-y: auto;
-      }
-
-      .docs-sidebar h3 {
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--text-muted);
-        margin: 0 0 12px;
-        padding-top: 16px;
-      }
-
-      .docs-sidebar h3:first-child {
-        padding-top: 0;
-      }
-
-      .docs-sidebar ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .docs-sidebar li {
-        margin-bottom: 8px;
-      }
-
-      .docs-sidebar a {
-        color: var(--text);
-        text-decoration: none;
-        font-size: 0.9rem;
-        display: block;
-        padding: 6px 8px;
-        border-radius: 4px;
-        transition: all 0.2s;
-      }
-
-      .docs-sidebar a:hover {
-        background: var(--bg);
-        color: var(--accent);
-      }
-
-      .docs-sidebar a.active {
-        background: var(--accent);
-        color: white;
-      }
-
-      .docs-content {
-        min-width: 0;
-      }
-
-      .docs-content h2 {
-        scroll-margin-top: 100px;
-        margin-top: 40px;
-        margin-bottom: 20px;
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 12px;
-      }
-
-      .docs-content h2:first-child {
-        margin-top: 0;
-      }
-
-      .docs-content h3 {
-        margin-top: 24px;
-        margin-bottom: 16px;
-        font-size: 1.1rem;
-        font-weight: 600;
-      }
-
-      .docs-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 16px 0;
-        font-size: 0.95rem;
-      }
-
-      .docs-table th {
-        background: var(--bg-soft);
-        padding: 12px;
-        text-align: left;
-        font-weight: 600;
-        border-bottom: 2px solid var(--border);
-      }
-
-      .docs-table td {
-        padding: 12px;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .docs-table tr:hover {
-        background: var(--bg-soft);
-      }
-
       .callout {
         background: var(--bg-soft);
         border-left: 4px solid var(--accent);
@@ -133,36 +26,25 @@
         border-radius: 4px;
         margin: 16px 0;
       }
-
-      code {
-        background: var(--code-bg);
-        padding: 2px 6px;
-        border-radius: 3px;
-        font-size: 0.9em;
-      }
-
-      pre {
-        background: var(--code-bg);
-        padding: 16px;
-        border-radius: 8px;
-        overflow-x: auto;
+      .docs-table {
+        width: 100%;
+        border-collapse: collapse;
         margin: 16px 0;
+        font-size: 0.95rem;
       }
-
-      pre code {
-        padding: 0;
+      .docs-table th {
+        background: var(--bg-soft);
+        padding: 12px;
+        text-align: left;
+        font-weight: 600;
+        border-bottom: 2px solid var(--border);
       }
-
-      @media (max-width: 900px) {
-        .docs-layout {
-          grid-template-columns: 1fr;
-          gap: 24px;
-        }
-
-        .docs-sidebar {
-          position: static;
-          max-height: none;
-        }
+      .docs-table td {
+        padding: 12px;
+        border-bottom: 1px solid var(--border);
+      }
+      .docs-table tr:hover {
+        background: var(--bg-soft);
       }
     </style>
   </head>
@@ -187,56 +69,60 @@
       </div>
     </header>
 
-    <!-- ===== Hero ===== -->
-    <section class="section-tight" style="padding-top: 56px">
-      <div class="container">
-        <p class="eyebrow">RBC Capital Markets Summer 2026</p>
-        <h1 style="font-size: clamp(1.8rem, 3.4vw, 2.6rem); margin: 0 0 12px">
-          Hypothetical Stress Scenario Engine
-        </h1>
-        <p class="muted" style="max-width: 64ch; font-size: 1.05rem">
-          Cross-asset conditional Gaussian scenario generator for coherent stress testing across equities, rates, commodities, and FX.
-        </p>
-      </div>
-    </section>
+    <div class="docs-shell">
+      <!-- ===== Sidebar ===== -->
+      <aside class="docs-sidebar" id="docs-sidebar">
+        <div class="docs-search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input id="docs-search-input" type="text" placeholder="Search this documentation…" autocomplete="off" />
+        </div>
 
-    <!-- ===== Main Content ===== -->
-    <section class="section">
-      <div class="container">
-        <div class="docs-layout">
-          <!-- Sidebar -->
-          <aside class="docs-sidebar">
-            <h3>Overview</h3>
-            <ul>
-              <li><a href="#overview">Overview</a></li>
-              <li><a href="#motivation">Motivation</a></li>
-              <li><a href="#architecture">Architecture</a></li>
-            </ul>
+        <div class="docs-title-block">
+          <div class="doc-name">Stress Scenario Engine</div>
+          <div class="doc-meta">Mo Minoneshan · 2026</div>
+        </div>
 
-            <h3>Data & Methodology</h3>
-            <ul>
-              <li><a href="#universe">Risk Factor Universe</a></li>
-              <li><a href="#screening">Tier A Screening</a></li>
-              <li><a href="#transforms">Data Transforms</a></li>
-              <li><a href="#covariance">Covariance Estimation</a></li>
-            </ul>
+        <ul class="docs-nav">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#motivation">Motivation</a></li>
+          <li><a href="#architecture">Architecture</a></li>
+          <li class="nav-part">Data &amp; Methodology</li>
+          <li><a href="#universe">Risk Factor Universe</a></li>
+          <li><a href="#screening">Tier A Screening</a></li>
+          <li><a href="#transforms">Data Transforms</a></li>
+          <li><a href="#covariance">Covariance Estimation</a></li>
+          <li class="nav-part">Engine</li>
+          <li><a href="#conditional-gaussian">Conditional Gaussian</a></li>
+          <li><a href="#multicollinearity">Multicollinearity Checks</a></li>
+          <li><a href="#validation">Validation</a></li>
+          <li class="nav-part">Implementation</li>
+          <li><a href="#api">API &amp; Interface</a></li>
+          <li><a href="#reproduction">Reproduction</a></li>
+        </ul>
+        <p class="no-results">No matching sections.</p>
+      </aside>
 
-            <h3>Engine</h3>
-            <ul>
-              <li><a href="#conditional-gaussian">Conditional Gaussian</a></li>
-              <li><a href="#multicollinearity">Multicollinearity Checks</a></li>
-              <li><a href="#validation">Validation</a></li>
-            </ul>
+      <!-- ===== Main Content ===== -->
+      <main class="docs-main">
+        <button class="docs-sidebar-toggle" aria-label="Toggle contents">☰ Contents</button>
+        <div class="docs-breadcrumb">
+          <a href="../../projects.html">Projects</a> /
+          <a href="index.html">Stress Scenario Engine</a> / Documentation
+        </div>
+        <div class="docs-header">
+          <h1>Hypothetical Stress Scenario Engine</h1>
+          <div class="author">Mo Minoneshan</div>
+          <div class="date">2026</div>
+        </div>
+        <div class="docs-actions">
+          <a href="https://github.com/Minoneshan/Stress-Scenario-Engine" class="btn btn-secondary btn-sm" target="_blank" rel="noopener">GitHub</a>
+          <a href="demo.html" class="btn btn-secondary btn-sm">Demo</a>
+        </div>
 
-            <h3>Implementation</h3>
-            <ul>
-              <li><a href="#api">API & Interface</a></li>
-              <li><a href="#reproduction">Reproduction</a></li>
-            </ul>
-          </aside>
-
-          <!-- Content -->
-          <div class="docs-content">
+        <div class="docs-content">
             <!-- ===== Overview ===== -->
             <h2 id="overview">Overview</h2>
             <p>
@@ -567,13 +453,12 @@ jupyter notebook 02_mvp_engine.ipynb
                 Demo Page
               </a>
               <a href="https://github.com/Minoneshan/Stress-Scenario-Engine" target="_blank" class="btn btn-primary" style="display: inline-block">
-                GitHub Repository →
+                GitHub Repository
               </a>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
+      </main>
+    </div>
 
     <!-- ===== Footer ===== -->
     <footer class="site-footer">
@@ -590,6 +475,7 @@ jupyter notebook 02_mvp_engine.ipynb
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
     <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/docs.js"></script>
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
       document.querySelectorAll('pre code').forEach(el => {

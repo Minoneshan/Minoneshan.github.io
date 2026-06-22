@@ -1,8 +1,21 @@
-# Mo Minoneshan — Quantitative Finance Portfolio
+# Mo Minoneshan — Personal Website
 
-A clean, professional quant portfolio website built with pure HTML, CSS, and JavaScript. No build step, zero dependencies, deploys instantly on GitHub Pages.
+A clean, professional personal website built with pure HTML, CSS, and JavaScript. No build step, zero dependencies, deploys instantly on GitHub Pages.
 
-## 📁 Site Structure
+## Custom Domain Setup
+
+This repo includes a `CNAME` file set to `minoneshan.com`. To use a custom domain:
+
+1. Purchase the domain (e.g. `minoneshan.com`) from a registrar.
+2. In your DNS provider, add records pointing to GitHub Pages:
+   - Four `A` records for the apex domain → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - One `CNAME` record for `www` → `minoneshan.github.io`
+3. In the GitHub repo: **Settings → Pages → Custom domain**, enter `minoneshan.com` and enable **Enforce HTTPS**.
+4. If you prefer a different domain (e.g. `.io`), edit the `CNAME` file accordingly.
+
+If you do not own a domain yet, simply delete the `CNAME` file and the site stays at `minoneshan.github.io`.
+
+## Site Structure
 
 ```
 /

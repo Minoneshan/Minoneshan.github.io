@@ -183,6 +183,7 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="../../assets/css/docs.css" />
   </head>
   <body>
     <!-- ===== Header ===== -->
@@ -205,54 +206,58 @@
       </div>
     </header>
 
-    <!-- ===== Hero ===== -->
-    <section class="section-tight" style="padding-top: 56px">
-      <div class="container">
-        <p class="eyebrow">Waterbridge Modern Mercantilism</p>
-        <h1 style="font-size: clamp(1.8rem, 3.4vw, 2.6rem); margin: 0 0 12px">
-          Technical Documentation
-        </h1>
-        <p class="muted" style="max-width: 64ch; font-size: 1.05rem">
-          Complete reference for the 25 global economic forecasts, quantitative methodology, and validation results.
-        </p>
-      </div>
-    </section>
+    <div class="docs-shell">
+      <!-- ===== Sidebar ===== -->
+      <aside class="docs-sidebar" id="docs-sidebar">
+        <div class="docs-search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input id="docs-search-input" type="text" placeholder="Search this documentation…" autocomplete="off" />
+        </div>
 
-    <!-- ===== Main Content ===== -->
-    <section class="section">
-      <div class="container">
-        <div class="docs-layout">
-          <!-- Sidebar -->
-          <aside class="docs-sidebar">
-            <h3>Getting Started</h3>
-            <ul>
-              <li><a href="#overview">Overview</a></li>
-              <li><a href="#methodology">Methodology</a></li>
-              <li><a href="#models">Models</a></li>
-            </ul>
+        <div class="docs-title-block">
+          <div class="doc-name">Waterbridge Challenge</div>
+          <div class="doc-meta">Mo Minoneshan · 2026</div>
+        </div>
 
-            <h3>Forecasts</h3>
-            <ul>
-              <li><a href="#trade">Trade Restructuring (F1-F7)</a></li>
-              <li><a href="#institutional">Institutional Changes (F8-F20)</a></li>
-              <li><a href="#systemic">Systemic Risks (F21-F25)</a></li>
-            </ul>
+        <ul class="docs-nav">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#methodology">Methodology</a></li>
+          <li><a href="#models">Models</a></li>
+          <li class="nav-part">Forecasts</li>
+          <li><a href="#trade">Trade Restructuring (F1-F7)</a></li>
+          <li><a href="#institutional">Institutional Changes (F8-F20)</a></li>
+          <li><a href="#systemic">Systemic Risks (F21-F25)</a></li>
+          <li class="nav-part">Analysis</li>
+          <li><a href="#validation">Validation</a></li>
+          <li><a href="#interdependency">Interdependency</a></li>
+          <li><a href="#results">Key Results</a></li>
+          <li class="nav-part">Code</li>
+          <li><a href="#reproduction">Reproduction</a></li>
+        </ul>
+        <p class="no-results">No matching sections.</p>
+      </aside>
 
-            <h3>Analysis</h3>
-            <ul>
-              <li><a href="#validation">Validation</a></li>
-              <li><a href="#interdependency">Interdependency</a></li>
-              <li><a href="#results">Key Results</a></li>
-            </ul>
+      <!-- ===== Main Content ===== -->
+      <main class="docs-main">
+        <button class="docs-sidebar-toggle" aria-label="Toggle contents">☰ Contents</button>
+        <div class="docs-breadcrumb">
+          <a href="../../projects.html">Projects</a> /
+          <a href="index.html">Waterbridge Challenge</a> / Documentation
+        </div>
+        <div class="docs-header">
+          <h1>Modern Mercantilism — Technical Documentation</h1>
+          <div class="author">Mo Minoneshan</div>
+          <div class="date">2026</div>
+        </div>
+        <div class="docs-actions">
+          <a href="https://github.com/Minoneshan/Waterbridge_MM" class="btn btn-secondary btn-sm" target="_blank" rel="noopener">GitHub</a>
+          <a href="demo.html" class="btn btn-secondary btn-sm">Demo</a>
+        </div>
 
-            <h3>Code</h3>
-            <ul>
-              <li><a href="#reproduction">Reproduction</a></li>
-            </ul>
-          </aside>
-
-          <!-- Content -->
-          <div class="docs-content">
+        <div class="docs-content">
             <!-- ===== Overview ===== -->
             <h2 id="overview">Overview</h2>
             <p>
@@ -770,13 +775,12 @@ seaborn==0.12.0</code></pre>
                 Demo Page
               </a>
               <a href="https://github.com/Minoneshan/Waterbridge_MM" target="_blank" class="btn btn-primary" style="display: inline-block">
-                GitHub Repository →
+                GitHub Repository
               </a>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
+      </main>
+    </div>
 
     <!-- ===== Footer ===== -->
     <footer class="site-footer">
@@ -793,33 +797,11 @@ seaborn==0.12.0</code></pre>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
     <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/docs.js"></script>
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
-      
-      // Highlight code blocks
       document.querySelectorAll('pre code').forEach(el => {
         hljs.highlightElement(el);
-      });
-
-      // Scrollspy for sidebar
-      const sidebarLinks = document.querySelectorAll('.docs-sidebar a');
-      const sections = document.querySelectorAll('h2[id]');
-
-      window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop;
-          if (pageYOffset >= sectionTop - 150) {
-            current = section.getAttribute('id');
-          }
-        });
-
-        sidebarLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === '#' + current) {
-            link.classList.add('active');
-          }
-        });
       });
     </script>
   </body>
