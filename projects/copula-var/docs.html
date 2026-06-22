@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentation — Copula-Tail VaR Engine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+      integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css"
+    />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/docs.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a href="../../index.html" class="brand">
+          Mo Minoneshan
+          <span class="brand-sub">Quantitative Research</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../projects.html" class="active">Projects</a></li>
+          <li><a href="../../notes.html">Notes</a></li>
+          <li><a href="../../resume.html">Resume</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="docs-shell">
+      <aside class="docs-sidebar" id="docs-sidebar">
+        <div class="docs-search">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input
+            id="docs-search-input"
+            type="text"
+            placeholder="Search this documentation…"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="docs-title-block">
+          <div class="doc-name">Copula-Tail VaR Engine</div>
+          <div class="doc-meta">Mo Minoneshan · 2026</div>
+        </div>
+
+        <ul class="docs-nav">
+          <li><a href="#overview">Overview</a></li>
+          <li class="nav-part">Front Matter</li>
+          <li>
+            <a href="#summary"><span class="num">0</span>Executive Summary</a>
+          </li>
+          <li><a href="#motivation"><span class="num">1</span>Motivation</a></li>
+          <li class="nav-part">Methodology</li>
+          <li>
+            <a href="#marginals"><span class="num">2</span>Marginal Tails (EVT)</a>
+          </li>
+          <li>
+            <a href="#copula"><span class="num">3</span>Dependence (t-Copula)</a>
+          </li>
+          <li>
+            <a href="#var-es"><span class="num">4</span>VaR &amp; ES</a>
+          </li>
+          <li class="nav-part">Application</li>
+          <li>
+            <a href="#implementation"
+              ><span class="num">5</span>Implementation</a
+            >
+          </li>
+          <li>
+            <a href="#validation"><span class="num">6</span>Validation</a>
+          </li>
+          <li>
+            <a href="#limitations"><span class="num">7</span>Limitations</a>
+          </li>
+          <li class="nav-part">Appendix</li>
+          <li>
+            <a href="#appendix-a"><span class="num">A</span>API Reference</a>
+          </li>
+        </ul>
+        <p class="no-results">No matching sections.</p>
+      </aside>
+
+      <main class="docs-main">
+        <button class="docs-sidebar-toggle" aria-label="Toggle contents">
+          ☰ Contents
+        </button>
+        <div class="docs-breadcrumb">
+          <a href="../../projects.html">Projects</a> /
+          <a href="index.html">Copula-Tail VaR Engine</a> / Documentation
+        </div>
+        <div class="docs-header">
+          <h1>Copula-Tail VaR Engine</h1>
+          <div class="author">Mo Minoneshan</div>
+          <div class="date">2026</div>
+        </div>
+        <div class="docs-actions">
+          <a
+            href="https://github.com/Minoneshan"
+            class="btn btn-secondary btn-sm"
+            target="_blank"
+            rel="noopener"
+            >GitHub</a
+          >
+          <a href="demo.html" class="btn btn-secondary btn-sm">Demo</a>
+        </div>
+
+        <div class="docs-content">
+          <section id="overview">
+            <h2><span class="sec-num"></span>Overview</h2>
+            <p>
+              This engine estimates portfolio tail risk by modeling each asset's
+              marginal tail with extreme value theory and the joint dependence
+              with a Student-t copula. It then computes Value-at-Risk (VaR) and
+              Expected Shortfall (ES) by Monte Carlo simulation.
+            </p>
+          </section>
+
+          <section id="summary">
+            <h2><span class="sec-num">0</span>Executive Summary</h2>
+            <p>
+              Gaussian models understate joint extreme losses. By separating
+              marginals from dependence, this engine captures fat tails and tail
+              co-movement that drive real portfolio drawdowns.
+            </p>
+          </section>
+
+          <section id="motivation">
+            <h2><span class="sec-num">1</span>Motivation</h2>
+            <p>
+              In crises, correlations rise and tails fatten simultaneously. A
+              Student-t copula encodes tail dependence that a Gaussian copula
+              cannot.
+            </p>
+          </section>
+
+          <section id="marginals">
+            <h2><span class="sec-num">2</span>Marginal Tails (EVT)</h2>
+            <p>
+              Using peaks-over-threshold, excesses over a high threshold
+              \(u\) follow a Generalized Pareto distribution:
+            </p>
+            <p>
+              $$
+              G_{\xi,\beta}(y) = 1 - \left(1 + \frac{\xi y}{\beta}\right)^{-1/\xi},
+              \quad y \ge 0.
+              $$
+            </p>
+          </section>
+
+          <section id="copula">
+            <h2><span class="sec-num">3</span>Dependence (t-Copula)</h2>
+            <p>
+              The Student-t copula couples uniform margins with a correlation
+              matrix \(R\) and degrees of freedom \(\nu\), producing symmetric
+              tail dependence that strengthens as \(\nu\) decreases.
+            </p>
+          </section>
+
+          <section id="var-es">
+            <h2><span class="sec-num">4</span>VaR &amp; Expected Shortfall</h2>
+            <p>
+              For loss \(L\) at level \(\alpha\):
+            </p>
+            <p>
+              $$
+              \mathrm{VaR}_\alpha = \inf\{\ell : P(L \le \ell) \ge \alpha\},
+              \qquad
+              \mathrm{ES}_\alpha = \mathbb{E}[L \mid L \ge \mathrm{VaR}_\alpha].
+              $$
+            </p>
+          </section>
+
+          <section id="implementation">
+            <h2><span class="sec-num">5</span>Implementation</h2>
+            <pre><code class="language-python">engine = CopulaVaR(nu=6)
+engine.fit(returns)
+risk = engine.estimate(weights, alpha=[0.95, 0.99], n_sims=100_000)
+print(risk["VaR"], risk["ES"])</code></pre>
+          </section>
+
+          <section id="validation">
+            <h2><span class="sec-num">6</span>Validation</h2>
+            <p>
+              Backtests use Kupiec's unconditional coverage test and
+              Christoffersen's independence test on VaR exceptions.
+            </p>
+          </section>
+
+          <section id="limitations">
+            <h2><span class="sec-num">7</span>Limitations</h2>
+            <div class="callout warn">
+              <p class="callout-title">Assumptions</p>
+              <p style="margin: 0; color: var(--text)">
+                EVT threshold selection and copula degrees of freedom are
+                sensitive to the sample; estimates can be unstable for short
+                histories.
+              </p>
+            </div>
+          </section>
+
+          <section id="appendix-a">
+            <h2><span class="sec-num">A</span>API Reference</h2>
+            <pre><code class="language-python">class CopulaVaR:
+    def __init__(self, nu: float = 6): ...
+    def fit(self, returns: pd.DataFrame) -> "CopulaVaR": ...
+    def estimate(self, weights, alpha, n_sims=100_000) -> dict: ...</code></pre>
+          </section>
+
+          <nav class="docs-pager">
+            <a href="index.html">
+              <span class="pager-label">← Back</span>
+              <span class="pager-title">Project landing page</span>
+            </a>
+            <a href="demo.html" class="next">
+              <span class="pager-label">Next →</span>
+              <span class="pager-title">Interactive demo</span>
+            </a>
+          </nav>
+        </div>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container foot-row">
+        <div>© <span id="year"></span> Mo Minoneshan</div>
+        <div class="foot-links">
+          <a href="../../projects.html">Projects</a>
+          <a href="https://github.com/Minoneshan" target="_blank" rel="noopener"
+            >GitHub</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/docs.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body, {delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '\\(', right: '\\)', display: false}
+      ]});"
+    ></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo — Monte Carlo Option Pricer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a href="../../index.html" class="brand">
+          Mo Minoneshan
+          <span class="brand-sub">Quantitative Research</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../projects.html" class="active">Projects</a></li>
+          <li><a href="../../notes.html">Notes</a></li>
+          <li><a href="../../resume.html">Resume</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container">
+        <p class="muted" style="font-size: 13px; margin: 0 0 14px">
+          <a href="../../projects.html">Projects</a> /
+          <a href="index.html">Monte Carlo Option Pricer</a> / Demo
+        </p>
+        <h1 style="font-size: clamp(1.7rem, 3vw, 2.3rem); margin: 0 0 12px">
+          Interactive Demo
+        </h1>
+        <p class="muted" style="max-width: 60ch; font-size: 1.05rem">
+          Set option parameters, choose a payoff, and price with Monte Carlo.
+        </p>
+
+        <div
+          style="
+            margin-top: 28px;
+            border: 1px dashed var(--border-strong);
+            border-radius: var(--radius);
+            background: var(--bg-soft);
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 32px;
+          "
+        >
+          <div>
+            <p style="font-weight: 600; margin: 0 0 8px">Demo placeholder</p>
+            <p class="muted" style="margin: 0; max-width: 48ch">
+              Embed a WASM build or a hosted notebook here with an
+              <code>&lt;iframe&gt;</code>.
+            </p>
+          </div>
+        </div>
+
+        <div class="btn-row" style="margin-top: 28px">
+          <a href="docs.html" class="btn btn-secondary">Read Documentation</a>
+          <a href="index.html" class="btn btn-ghost">Back to project</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container foot-row">
+        <div>© <span id="year"></span> Mo Minoneshan</div>
+        <div class="foot-links">
+          <a href="../../projects.html">Projects</a>
+          <a href="https://github.com/Minoneshan" target="_blank" rel="noopener"
+            >GitHub</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

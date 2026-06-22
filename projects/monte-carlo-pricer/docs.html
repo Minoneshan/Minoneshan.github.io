@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentation — Monte Carlo Option Pricer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+      integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css"
+    />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/docs.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a href="../../index.html" class="brand">
+          Mo Minoneshan
+          <span class="brand-sub">Quantitative Research</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../projects.html" class="active">Projects</a></li>
+          <li><a href="../../notes.html">Notes</a></li>
+          <li><a href="../../resume.html">Resume</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="docs-shell">
+      <aside class="docs-sidebar" id="docs-sidebar">
+        <div class="docs-search">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input
+            id="docs-search-input"
+            type="text"
+            placeholder="Search this documentation…"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="docs-title-block">
+          <div class="doc-name">Monte Carlo Option Pricer</div>
+          <div class="doc-meta">Mo Minoneshan · 2026</div>
+        </div>
+
+        <ul class="docs-nav">
+          <li><a href="#overview">Overview</a></li>
+          <li class="nav-part">Methodology</li>
+          <li><a href="#model"><span class="num">1</span>Price Dynamics</a></li>
+          <li><a href="#estimator"><span class="num">2</span>MC Estimator</a></li>
+          <li>
+            <a href="#variance-reduction"
+              ><span class="num">3</span>Variance Reduction</a
+            >
+          </li>
+          <li class="nav-part">Engineering</li>
+          <li>
+            <a href="#parallelism"><span class="num">4</span>Parallelism</a>
+          </li>
+          <li><a href="#greeks"><span class="num">5</span>Greeks</a></li>
+          <li class="nav-part">Application</li>
+          <li><a href="#results"><span class="num">6</span>Results</a></li>
+          <li>
+            <a href="#limitations"><span class="num">7</span>Limitations</a>
+          </li>
+          <li class="nav-part">Appendix</li>
+          <li><a href="#appendix-a"><span class="num">A</span>API</a></li>
+        </ul>
+        <p class="no-results">No matching sections.</p>
+      </aside>
+
+      <main class="docs-main">
+        <button class="docs-sidebar-toggle" aria-label="Toggle contents">
+          ☰ Contents
+        </button>
+        <div class="docs-breadcrumb">
+          <a href="../../projects.html">Projects</a> /
+          <a href="index.html">Monte Carlo Option Pricer</a> / Documentation
+        </div>
+        <div class="docs-header">
+          <h1>Monte Carlo Option Pricer</h1>
+          <div class="author">Mo Minoneshan</div>
+          <div class="date">2026</div>
+        </div>
+        <div class="docs-actions">
+          <a
+            href="https://github.com/Minoneshan"
+            class="btn btn-secondary btn-sm"
+            target="_blank"
+            rel="noopener"
+            >GitHub</a
+          >
+          <a href="demo.html" class="btn btn-secondary btn-sm">Demo</a>
+        </div>
+
+        <div class="docs-content">
+          <section id="overview">
+            <h2><span class="sec-num"></span>Overview</h2>
+            <p>
+              A C++ Monte Carlo engine for pricing European and path-dependent
+              options, accelerated with OpenMP and standard variance-reduction
+              techniques.
+            </p>
+          </section>
+
+          <section id="model">
+            <h2><span class="sec-num">1</span>Price Dynamics</h2>
+            <p>The underlying follows geometric Brownian motion:</p>
+            <p>
+              $$
+              dS_t = r S_t\, dt + \sigma S_t\, dW_t,
+              \qquad
+              S_T = S_0 \exp\!\left[(r - \tfrac{1}{2}\sigma^2)T + \sigma W_T\right].
+              $$
+            </p>
+          </section>
+
+          <section id="estimator">
+            <h2><span class="sec-num">2</span>Monte Carlo Estimator</h2>
+            <p>The discounted payoff is averaged over simulated paths:</p>
+            <p>
+              $$
+              \hat{V} = e^{-rT}\,\frac{1}{N}\sum_{i=1}^{N} f\!\left(S_T^{(i)}\right),
+              \qquad
+              \mathrm{SE} = \frac{\hat\sigma_f}{\sqrt{N}}.
+              $$
+            </p>
+          </section>
+
+          <section id="variance-reduction">
+            <h2><span class="sec-num">3</span>Variance Reduction</h2>
+            <p>
+              Antithetic variates pair each draw \(Z\) with \(-Z\); control
+              variates subtract a correlated quantity with known expectation to
+              reduce estimator variance.
+            </p>
+          </section>
+
+          <section id="parallelism">
+            <h2><span class="sec-num">4</span>Parallelism</h2>
+            <pre><code class="language-cpp">double price = 0.0;
+#pragma omp parallel for reduction(+ : price)
+for (long i = 0; i &lt; n_paths; ++i) {
+    double z = rng.normal();
+    double sT = s0 * std::exp((r - 0.5 * vol * vol) * T + vol * std::sqrt(T) * z);
+    price += std::max(sT - K, 0.0);
+}
+price = std::exp(-r * T) * price / n_paths;</code></pre>
+          </section>
+
+          <section id="greeks">
+            <h2><span class="sec-num">5</span>Greeks</h2>
+            <p>
+              Delta and Vega are computed by pathwise differentiation where
+              smooth, falling back to bump-and-revalue for discontinuous
+              payoffs.
+            </p>
+          </section>
+
+          <section id="results">
+            <h2><span class="sec-num">6</span>Results</h2>
+            <p>
+              For a European call, the engine matches the Black–Scholes price
+              within Monte Carlo error, with near-linear speedup across cores.
+            </p>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Threads</th>
+                  <th>Paths/s</th>
+                  <th>Speedup</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td>12M</td><td>1.0×</td></tr>
+                <tr><td>4</td><td>46M</td><td>3.8×</td></tr>
+                <tr><td>8</td><td>88M</td><td>7.3×</td></tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section id="limitations">
+            <h2><span class="sec-num">7</span>Limitations</h2>
+            <div class="callout warn">
+              <p class="callout-title">Scope</p>
+              <p style="margin: 0; color: var(--text)">
+                Assumes constant volatility and rates; stochastic-vol and
+                local-vol models are future extensions.
+              </p>
+            </div>
+          </section>
+
+          <section id="appendix-a">
+            <h2><span class="sec-num">A</span>API Reference</h2>
+            <pre><code class="language-cpp">struct PricingResult { double price, stderr, delta, gamma, vega; };
+
+PricingResult price_european(double s0, double K, double r,
+                             double vol, double T,
+                             long n_paths, int n_threads);</code></pre>
+          </section>
+
+          <nav class="docs-pager">
+            <a href="index.html">
+              <span class="pager-label">← Back</span>
+              <span class="pager-title">Project landing page</span>
+            </a>
+            <a href="demo.html" class="next">
+              <span class="pager-label">Next →</span>
+              <span class="pager-title">Interactive demo</span>
+            </a>
+          </nav>
+        </div>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container foot-row">
+        <div>© <span id="year"></span> Mo Minoneshan</div>
+        <div class="foot-links">
+          <a href="../../projects.html">Projects</a>
+          <a href="https://github.com/Minoneshan" target="_blank" rel="noopener"
+            >GitHub</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/docs.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-clike.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-cpp.min.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body, {delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '\\(', right: '\\)', display: false}
+      ]});"
+    ></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

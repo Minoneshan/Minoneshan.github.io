@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentation — CPI Transformer Risk Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+      integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css"
+    />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/docs.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a href="../../index.html" class="brand">
+          Mo Minoneshan
+          <span class="brand-sub">Quantitative Research</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../projects.html" class="active">Projects</a></li>
+          <li><a href="../../notes.html">Notes</a></li>
+          <li><a href="../../resume.html">Resume</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="docs-shell">
+      <aside class="docs-sidebar" id="docs-sidebar">
+        <div class="docs-search">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input
+            id="docs-search-input"
+            type="text"
+            placeholder="Search this documentation…"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="docs-title-block">
+          <div class="doc-name">CPI Transformer Dashboard</div>
+          <div class="doc-meta">Mo Minoneshan · 2026</div>
+        </div>
+
+        <ul class="docs-nav">
+          <li><a href="#overview">Overview</a></li>
+          <li class="nav-part">Data &amp; Model</li>
+          <li><a href="#data"><span class="num">1</span>Data</a></li>
+          <li>
+            <a href="#architecture"
+              ><span class="num">2</span>Architecture</a
+            >
+          </li>
+          <li>
+            <a href="#training"><span class="num">3</span>Training</a>
+          </li>
+          <li class="nav-part">Explainability</li>
+          <li>
+            <a href="#attribution"
+              ><span class="num">4</span>Attribution</a
+            >
+          </li>
+          <li class="nav-part">Application</li>
+          <li><a href="#results"><span class="num">5</span>Results</a></li>
+          <li>
+            <a href="#limitations"><span class="num">6</span>Limitations</a>
+          </li>
+          <li class="nav-part">Appendix</li>
+          <li><a href="#appendix-a"><span class="num">A</span>API</a></li>
+        </ul>
+        <p class="no-results">No matching sections.</p>
+      </aside>
+
+      <main class="docs-main">
+        <button class="docs-sidebar-toggle" aria-label="Toggle contents">
+          ☰ Contents
+        </button>
+        <div class="docs-breadcrumb">
+          <a href="../../projects.html">Projects</a> /
+          <a href="index.html">CPI Transformer Risk Dashboard</a> / Documentation
+        </div>
+        <div class="docs-header">
+          <h1>CPI Transformer Risk Dashboard</h1>
+          <div class="author">Mo Minoneshan</div>
+          <div class="date">2026</div>
+        </div>
+        <div class="docs-actions">
+          <a
+            href="https://github.com/Minoneshan"
+            class="btn btn-secondary btn-sm"
+            target="_blank"
+            rel="noopener"
+            >GitHub</a
+          >
+          <a href="demo.html" class="btn btn-secondary btn-sm">Demo</a>
+        </div>
+
+        <div class="docs-content">
+          <section id="overview">
+            <h2><span class="sec-num"></span>Overview</h2>
+            <p>
+              A transformer encoder forecasts CPI inflation across horizons, and
+              an explainability layer attributes each forecast to its macro
+              drivers.
+            </p>
+          </section>
+
+          <section id="data">
+            <h2><span class="sec-num">1</span>Data</h2>
+            <p>
+              Inputs include lagged CPI components, labor-market series, energy
+              prices, and survey expectations, aligned to a monthly calendar.
+            </p>
+          </section>
+
+          <section id="architecture">
+            <h2><span class="sec-num">2</span>Architecture</h2>
+            <p>
+              A multi-head self-attention encoder ingests the macro sequence;
+              attention weights are
+            </p>
+            <p>
+              $$
+              \mathrm{Attn}(Q,K,V) =
+              \operatorname{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\right) V.
+              $$
+            </p>
+          </section>
+
+          <section id="training">
+            <h2><span class="sec-num">3</span>Training</h2>
+            <pre><code class="language-python">model = CPITransformer(d_model=128, n_heads=8, n_layers=4)
+opt = torch.optim.AdamW(model.parameters(), lr=3e-4)
+for epoch in range(epochs):
+    for xb, yb in loader:
+        loss = F.mse_loss(model(xb), yb)
+        opt.zero_grad(); loss.backward(); opt.step()</code></pre>
+          </section>
+
+          <section id="attribution">
+            <h2><span class="sec-num">4</span>Attribution</h2>
+            <p>
+              Forecast drivers are surfaced via attention weights and SHAP
+              values, giving a per-forecast breakdown of which inputs mattered.
+            </p>
+          </section>
+
+          <section id="results">
+            <h2><span class="sec-num">5</span>Results</h2>
+            <p>
+              The model improves on a consensus baseline in mean absolute error
+              at short horizons, with calibrated prediction intervals.
+            </p>
+          </section>
+
+          <section id="limitations">
+            <h2><span class="sec-num">6</span>Limitations</h2>
+            <div class="callout warn">
+              <p class="callout-title">Caveats</p>
+              <p style="margin: 0; color: var(--text)">
+                Macro regimes shift; out-of-sample performance can degrade around
+                structural breaks and policy changes.
+              </p>
+            </div>
+          </section>
+
+          <section id="appendix-a">
+            <h2><span class="sec-num">A</span>API Reference</h2>
+            <pre><code class="language-python">class CPITransformer(nn.Module):
+    def __init__(self, d_model=128, n_heads=8, n_layers=4): ...
+    def forward(self, x: torch.Tensor) -> torch.Tensor: ...
+    def explain(self, x: torch.Tensor) -> dict: ...</code></pre>
+          </section>
+
+          <nav class="docs-pager">
+            <a href="index.html">
+              <span class="pager-label">← Back</span>
+              <span class="pager-title">Project landing page</span>
+            </a>
+            <a href="demo.html" class="next">
+              <span class="pager-label">Next →</span>
+              <span class="pager-title">Interactive demo</span>
+            </a>
+          </nav>
+        </div>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container foot-row">
+        <div>© <span id="year"></span> Mo Minoneshan</div>
+        <div class="foot-links">
+          <a href="../../projects.html">Projects</a>
+          <a href="https://github.com/Minoneshan" target="_blank" rel="noopener"
+            >GitHub</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/docs.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body, {delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '\\(', right: '\\)', display: false}
+      ]});"
+    ></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
