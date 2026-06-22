@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AlphaAgents Demo — System Architecture Walkthrough</title>
+    <meta name="description" content="Interactive walkthrough of the AlphaAgents multi-agent research system." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+  </head>
+  <body>
+    <!-- ===== Header ===== -->
+    <header class="site-header">
+      <div class="container nav">
+        <a href="../../index.html" class="brand">
+          Mo Minoneshan
+          <span class="brand-sub">Quantitative Research</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../projects.html">Projects</a></li>
+          <li><a href="../../notes.html">Notes</a></li>
+          <li><a href="../../resume.html">Resume</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- ===== Demo Content ===== -->
+    <section class="section-tight" style="padding-top: 56px">
+      <div class="container">
+        <p class="eyebrow">AlphaAgents Demo</p>
+        <h1 style="font-size: clamp(1.8rem, 3.4vw, 2.6rem); margin: 0 0 12px">
+          Multi-Agent System Architecture
+        </h1>
+        <p class="muted" style="max-width: 64ch; font-size: 1.05rem">
+          Walkthrough of the specialist agent debate loop, data pipeline, and portfolio construction workflow.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 style="margin-bottom: 24px">Specialist Agent Flow</h2>
+        
+        <div style="background: var(--bg-soft); padding: 32px; border-radius: var(--radius-sm); margin-bottom: 24px">
+          <h3 style="margin-top: 0">1. Data Hydration</h3>
+          <p><strong>Goal:</strong> Fetch market data, SEC filings, and news articles for a stock universe.</p>
+          <pre style="background: var(--code-bg); padding: 16px; border-radius: 4px; overflow-x: auto"><code class="language-bash">python -m apps.data_fetch \
+  --tickers AAPL MSFT META \
+  --period 3mo \
+  --save-artifacts</code></pre>
+          <p><strong>Output:</strong> Cached market history, filing documents, headline summaries stored in local artifacts.</p>
+        </div>
+
+        <div style="background: var(--bg-soft); padding: 32px; border-radius: var(--radius-sm); margin-bottom: 24px">
+          <h3 style="margin-top: 0">2. Specialist Analysis</h3>
+          <p><strong>Goal:</strong> Run independent agents (fundamental, valuation, sentiment) on the hydrated data.</p>
+          
+          <div style="margin: 16px 0; padding: 16px; background: var(--bg); border-left: 4px solid #047857">
+            <strong>Fundamental Agent:</strong>
+            <pre style="background: var(--code-bg); padding: 12px; border-radius: 4px; font-size: 0.9rem; margin: 8px 0"><code>python -m apps.fundamental --ticker AAPL</code></pre>
+            <p style="margin: 8px 0; font-size: 0.9rem">
+              Reads 10-K/10-Q via RAG, prompts LLM for BUY/HOLD/SELL opinion on business fundamentals.
+            </p>
+          </div>
+
+          <div style="margin: 16px 0; padding: 16px; background: var(--bg); border-left: 4px solid #0f4c81">
+            <strong>Valuation Agent:</strong>
+            <pre style="background: var(--code-bg); padding: 12px; border-radius: 4px; font-size: 0.9rem; margin: 8px 0"><code>python -m apps.valuation --ticker AAPL</code></pre>
+            <p style="margin: 8px 0; font-size: 0.9rem">
+              Computes technical indicators (momentum, RSI), price mean-reversion, relative valuation metrics.
+            </p>
+          </div>
+
+          <div style="margin: 16px 0; padding: 16px; background: var(--bg); border-left: 4px solid #b45309">
+            <strong>Sentiment Agent:</strong>
+            <pre style="background: var(--code-bg); padding: 12px; border-radius: 4px; font-size: 0.9rem; margin: 8px 0"><code>python -m apps.sentiment --ticker AAPL --days 7</code></pre>
+            <p style="margin: 8px 0; font-size: 0.9rem">
+              Aggregates news headlines, computes recency-weighted sentiment, produces consensus narrative.
+            </p>
+          </div>
+        </div>
+
+        <div style="background: var(--bg-soft); padding: 32px; border-radius: var(--radius-sm); margin-bottom: 24px">
+          <h3 style="margin-top: 0">3. Debate & Consensus</h3>
+          <p><strong>Goal:</strong> Collaborator agent orchestrates debate, synthesizes specialist opinions into portfolio signal.</p>
+          <pre style="background: var(--code-bg); padding: 16px; border-radius: 4px; overflow-x: auto"><code class="language-bash">python -m apps.portfolio \
+  --tickers AAPL MSFT META AMZN GOOG \
+  --portfolio-strategy v3 \
+  --period 3mo</code></pre>
+          <p style="margin-top: 16px"><strong>Output Format (per ticker):</strong></p>
+          <pre style="background: var(--code-bg); padding: 16px; border-radius: 4px; font-size: 0.85rem"><code>{
+  "ticker": "AAPL",
+  "final_signal": "BUY",
+  "confidence": 0.78,
+  "fundamental_opinion": "Strong BUY",
+  "valuation_score": 0.65,
+  "sentiment_summary": "Positive momentum, earnings optimism",
+  "position_weight": 0.22
+}</code></pre>
+        </div>
+
+        <div style="background: var(--bg-soft); padding: 32px; border-radius: var(--radius-sm); margin-bottom: 24px">
+          <h3 style="margin-top: 0">4. Backtesting & Evaluation</h3>
+          <p><strong>Goal:</strong> Convert agent signals into portfolio returns, compute performance metrics.</p>
+          <pre style="background: var(--code-bg); padding: 16px; border-radius: 4px; overflow-x: auto"><code class="language-bash">python -m apps.evaluation \
+  --tickers AAPL MSFT META AMZN GOOG \
+  --portfolio \
+  --export-dashboard</code></pre>
+          <p style="margin-top: 16px"><strong>Performance Metrics:</strong></p>
+          <ul style="margin: 12px 0; padding-left: 20px">
+            <li>Cumulative returns & Sharpe ratio</li>
+            <li>Drawdown analysis & recovery metrics</li>
+            <li>Agent decision frequency & consensus rates</li>
+            <li>Per-ticker contribution to portfolio risk</li>
+          </ul>
+        </div>
+
+        <div style="background: var(--bg-soft); padding: 32px; border-radius: var(--radius-sm)">
+          <h3 style="margin-top: 0">5. Human-in-the-Loop Review</h3>
+          <p><strong>Goal:</strong> Analyst reviews decisions, approves or rejects with overrides logged for RLHF.</p>
+          <pre style="background: var(--code-bg); padding: 16px; border-radius: 4px; overflow-x: auto"><code class="language-bash">python -m apps.human_interface \
+  --tickers AAPL MSFT META \
+  --reviewer "Analyst Name"</code></pre>
+          <p style="margin-top: 16px">
+            <strong>Feedback Capture:</strong> Each override is logged as JSON with original signal, revised opinion, and reasoning.
+            Perfect for building RLHF datasets to improve agent calibration.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Dashboard ===== -->
+    <section class="section">
+      <div class="container">
+        <h2>Interactive Dashboard</h2>
+        <div style="background: var(--bg-soft); padding: 24px; border-radius: var(--radius-sm); text-align: center">
+          <p style="color: var(--text-muted); margin: 0">
+            A Streamlit dashboard is available to visualize agent decisions, debate frequency, and portfolio construction in real-time.
+          </p>
+          <p style="margin: 16px 0; color: var(--text-muted)">
+            <code>streamlit run dashboard/app.py</code>
+          </p>
+          <p style="color: var(--text-muted); font-size: 0.9rem">
+            Displays selected tickers, agent rationales, guardrail checks, and contribution to portfolio risk.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Config Options ===== -->
+    <section class="section">
+      <div class="container">
+        <h2>Flexible Configuration</h2>
+        <p>The system is designed for plug-and-play customization without code changes:</p>
+        
+        <h3 style="margin-top: 24px">LLM Provider Selection</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
+          <div style="padding: 16px; background: var(--bg-soft); border-radius: 4px">
+            <strong>Ollama-Only</strong>
+            <pre style="background: var(--code-bg); padding: 8px; border-radius: 4px; font-size: 0.85rem; margin: 8px 0"><code>export FUNDAMENTAL_PROVIDER=ollama
+export SENTIMENT_PROVIDER=ollama
+export OLLAMA_MODEL=mistral</code></pre>
+            <p style="margin: 8px 0; font-size: 0.9rem">Fully local, cost-friendly.</p>
+          </div>
+          <div style="padding: 16px; background: var(--bg-soft); border-radius: 4px">
+            <strong>OpenAI-Only</strong>
+            <pre style="background: var(--code-bg); padding: 8px; border-radius: 4px; font-size: 0.85rem; margin: 8px 0"><code>export OPENAI_API_KEY=sk-...
+export OPENAI_MODEL=gpt-4o
+export FUNDAMENTAL_PROVIDER=openai</code></pre>
+            <p style="margin: 8px 0; font-size: 0.9rem">Premium quality, managed latency.</p>
+          </div>
+          <div style="padding: 16px; background: var(--bg-soft); border-radius: 4px">
+            <strong>Hybrid</strong>
+            <pre style="background: var(--code-bg); padding: 8px; border-radius: 4px; font-size: 0.85rem; margin: 8px 0"><code>FUNDAMENTAL_PROVIDER=openai
+SENTIMENT_PROVIDER=ollama</code></pre>
+            <p style="margin: 8px 0; font-size: 0.9rem">Per-agent optimization.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Next Steps ===== -->
+    <section class="section" style="background: var(--bg-soft)">
+      <div class="container">
+        <h2 style="text-align: center">Ready to Dive Deeper?</h2>
+        <p style="text-align: center; color: var(--text-muted)">
+          Check out the full technical documentation for implementation details, API reference, and advanced usage patterns.
+        </p>
+        <div style="text-align: center; margin-top: 24px">
+          <a href="./docs.html" class="btn btn-primary">Read Full Documentation</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="site-footer">
+      <div class="container foot-row">
+        <div>© <span id="year"></span> Mo Minoneshan</div>
+        <div class="foot-links">
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/Minoneshan" target="_blank" rel="noopener">GitHub</a>
+          <a href="../../contact.html">Email</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

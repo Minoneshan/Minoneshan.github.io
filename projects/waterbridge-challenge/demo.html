@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waterbridge Challenge Results & Methodology</title>
+    <meta name="description" content="Results and econometric methodology for the Waterbridge 2025 Modern Mercantilism forecasting challenge." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+  </head>
+  <body>
+    <!-- ===== Header ===== -->
+    <header class="site-header">
+      <div class="container nav">
+        <a href="../../index.html" class="brand">
+          Mo Minoneshan
+          <span class="brand-sub">Quantitative Research</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../projects.html">Projects</a></li>
+          <li><a href="../../notes.html">Notes</a></li>
+          <li><a href="../../resume.html">Resume</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- ===== Content ===== -->
+    <section class="section-tight" style="padding-top: 56px">
+      <div class="container">
+        <p class="eyebrow">Waterbridge Challenge Results</p>
+        <h1 style="font-size: clamp(1.8rem, 3.4vw, 2.6rem); margin: 0 0 12px">
+          Methodology & Key Results
+        </h1>
+        <p class="muted" style="max-width: 64ch; font-size: 1.05rem">
+          Summary of the econometric approach and headline forecasts for 25 global scenarios.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Approach ===== -->
+    <section class="section">
+      <div class="container">
+        <h2>Methodological Approach</h2>
+        <p>
+          This project takes a rigorous, multi-model approach to probabilistic forecasting:
+        </p>
+        <ol>
+          <li><strong>Data Acquisition:</strong> Collect 20+ years of global trade data, macro indicators, policy records, and bilateral relationships</li>
+          <li><strong>Feature Engineering:</strong> Construct domain-specific indicators (tariff levels, supply chain metrics, tech adoption rates)</li>
+          <li><strong>Model Selection:</strong> For each forecast, fit the appropriate econometric model (ARIMA, VAR, logistic regression, survival analysis, etc.)</li>
+          <li><strong>Cross-Validation:</strong> K-fold validation, structural break tests, sensitivity analysis</li>
+          <li><strong>Probabilistic Calibration:</strong> Convert model outputs to calibrated probability forecasts with 95% confidence intervals</li>
+          <li><strong>Bayesian Integration:</strong> Combine forecast probabilities using Bayesian network to capture interdependencies</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== Forecast Categories ===== -->
+    <section class="section" style="background: var(--bg-soft)">
+      <div class="container">
+        <h2>Forecast Categories (F1-F25)</h2>
+
+        <h3>Trade Restructuring (F1-F7): 70% Baseline Probability</h3>
+        <div style="padding: 16px; background: var(--bg); border-radius: 8px; margin-bottom: 16px">
+          <table class="doc-table">
+            <tbody>
+              <tr>
+                <td><strong>F1: Tariff Escalation</strong><br/>MFN tariffs rise ≥2pp above 2022 baseline</td>
+                <td style="text-align: right"><code>70%</code></td>
+              </tr>
+              <tr>
+                <td><strong>F2: Supply Chain Diversification</strong><br/>China's US import share falls below 12%</td>
+                <td style="text-align: right"><code>75%</code></td>
+              </tr>
+              <tr>
+                <td><strong>F3: Vietnam Trade Surge</strong><br/>US-Vietnam bilateral trade volume doubles</td>
+                <td style="text-align: right"><code>72%</code></td>
+              </tr>
+              <tr>
+                <td><strong>F4: Services/Goods Divergence</strong><br/>Trade composition shifts in developed economies</td>
+                <td style="text-align: right"><code>60%</code></td>
+              </tr>
+              <tr>
+                <td><strong>F5: Tech Standards Bifurcation</strong><br/>Distinct US- vs China-led standards emerge</td>
+                <td style="text-align: right"><code>85%</code></td>
+              </tr>
+              <tr>
+                <td><strong>F6: Carbon Tariff Adoption</strong><br/>≥7 G-20 economies implement by 2029</td>
+                <td style="text-align: right"><code>64%</code></td>
+              </tr>
+              <tr>
+                <td><strong>F7: USD Reserve Resilience</strong><br/>USD maintains >55.5% of global reserves</td>
+                <td style="text-align: right"><code>66%</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Institutional Changes (F8-F20): 65% Baseline Probability</h3>
+        <p>
+          Forecasts covering China trade restrictions, regional bloc formation, technology transfer controls,
+          digital trade barriers, cross-border investment, and institutional coordination.
+        </p>
+        <div style="padding: 12px; background: var(--bg); border-radius: 4px; margin: 12px 0; font-size: 0.9rem">
+          <strong>Range:</strong> F8 (90%) to F25 (27%) representing policy likelihood and systemic tipping points.
+        </div>
+
+        <h3>Systemic Risks (F21-F25): 55% Baseline Probability</h3>
+        <p>
+          Macroeconomic tail risks including global recession, currency volatility, commodity shocks,
+          financial market integration, and central bank coordination failures.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Model Types ===== -->
+    <section class="section">
+      <div class="container">
+        <h2>Econometric Models Applied</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
+          <div style="padding: 16px; background: var(--bg-soft); border-radius: 8px">
+            <h3 style="margin-top: 0; font-size: 1rem">ARIMA (F1)</h3>
+            <p style="margin: 8px 0; font-size: 0.9rem">
+              Time series forecasting of tariff escalation using historical MFN tariff data.
+            </p>
+          </div>
+          <div style="padding: 16px; background: var(--bg-soft); border-radius: 8px">
+            <h3 style="margin-top: 0; font-size: 1rem">Linear Regression (F2-F4)</h3>
+            <p style="margin: 8px 0; font-size: 0.9rem">
+              Supply chain metrics on bilateral trade data with economic controls.
+            </p>
+          </div>
+          <div style="padding: 16px; background: var(--bg-soft); border-radius: 8px">
+            <h3 style="margin-top: 0; font-size: 1rem">Binary Classification (F5)</h3>
+            <p style="margin: 8px 0; font-size: 0.9rem">
+              Logistic regression on technology adoption and standards formation data.
+            </p>
+          </div>
+          <div style="padding: 16px; background: var(--bg-soft); border-radius: 8px">
+            <h3 style="margin-top: 0; font-size: 1rem">VAR Models (F7, F22-F24)</h3>
+            <p style="margin: 8px 0; font-size: 0.9rem">
+              Multivariate time series for reserve composition, currency volatility, market integration.
+            </p>
+          </div>
+          <div style="padding: 16px; background: var(--bg-soft); border-radius: 8px">
+            <h3 style="margin-top: 0; font-size: 1rem">GARCH Models (F22)</h3>
+            <p style="margin: 8px 0; font-size: 0.9rem">
+              Currency volatility forecasting with heteroskedastic variance.
+            </p>
+          </div>
+          <div style="padding: 16px; background: var(--bg-soft); border-radius: 8px">
+            <h3 style="margin-top: 0; font-size: 1rem">Bayesian Networks</h3>
+            <p style="margin: 8px 0; font-size: 0.9rem">
+              Interdependency analysis: tariff policy → supply chain changes → tech bifurcation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Validation ===== -->
+    <section class="section">
+      <div class="container">
+        <h2>Validation & Robustness</h2>
+        <p>
+          All models undergo rigorous validation to ensure calibrated, reproducible forecasts:
+        </p>
+        <h3>Cross-Validation</h3>
+        <ul>
+          <li><strong>K-Fold Validation:</strong> 5-fold CV on training data, hold-out test period</li>
+          <li><strong>Out-of-Sample Testing:</strong> 73% accuracy on held-out validation data</li>
+          <li><strong>Structural Break Tests:</strong> Chow test, CUSUM for regime changes</li>
+        </ul>
+
+        <h3>Confidence Bounds</h3>
+        <ul>
+          <li><strong>95% Intervals:</strong> All probability estimates include confidence bounds</li>
+          <li><strong>Monte Carlo Simulation:</strong> 10,000 iterations for uncertainty propagation</li>
+          <li><strong>Sensitivity Analysis:</strong> Key parameters tested across ±20% variation</li>
+        </ul>
+
+        <h3>Performance Metrics</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px">
+          <div style="padding: 16px; background: var(--bg-soft); border-radius: 8px">
+            <p style="margin: 0; font-size: 0.9rem">
+              <strong>Average R² Across Models:</strong>
+            </p>
+            <p style="margin: 8px 0; font-size: 1.3rem; font-weight: 600; color: var(--accent)">
+              0.68
+            </p>
+          </div>
+          <div style="padding: 16px; background: var(--bg-soft); border-radius: 8px">
+            <p style="margin: 0; font-size: 0.9rem">
+              <strong>System Fragility Index:</strong>
+            </p>
+            <p style="margin: 8px 0; font-size: 1.3rem; font-weight: 600; color: #047857">
+              0.39 (LOW)
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Interdependency ===== -->
+    <section class="section" style="background: var(--bg-soft)">
+      <div class="container">
+        <h2>Bayesian Interdependency Analysis</h2>
+        <p>
+          The 25 forecasts are not independent. Tariff escalation affects supply chain decisions,
+          which influence tech standards bifurcation, which impacts investment flows.
+        </p>
+        <div style="padding: 20px; background: var(--bg); border-radius: 8px; margin-top: 16px">
+          <h3 style="margin-top: 0">Network Properties</h3>
+          <ul>
+            <li><strong>Interdependency Strength:</strong> 0.73 (HIGH) – Strong correlations between forecast groups</li>
+            <li><strong>Nodes:</strong> 25 forecast scenarios</li>
+            <li><strong>Edges:</strong> Causal relationships (trade policy → supply chain → macro effects)</li>
+            <li><strong>Monte Carlo Paths:</strong> 10,000 simulations of correlated outcomes</li>
+          </ul>
+        </div>
+        <p style="margin-top: 16px; color: var(--text-muted); font-size: 0.95rem">
+          This enables tail-risk analysis: joint probability of multiple adverse scenarios occurring together.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Deliverable ===== -->
+    <section class="section">
+      <div class="container">
+        <h2>Competition Deliverable</h2>
+        <p>
+          The project submission includes a comprehensive PDF report with:
+        </p>
+        <ul>
+          <li>✅ Exact 25 binary probability forecasts (submitted August 1-5, 2025)</li>
+          <li>✅ Detailed methodology for each forecast</li>
+          <li>✅ Data provenance and source documentation</li>
+          <li>✅ Cross-validation results and confidence intervals</li>
+          <li>✅ Bayesian network interdependency analysis</li>
+          <li>✅ Sensitivity analysis results</li>
+          <li>✅ Fully reproducible Python analysis code</li>
+        </ul>
+        <p style="margin-top: 16px">
+          <strong>Repository:</strong> <a href="https://github.com/Minoneshan/Waterbridge_MM" target="_blank">
+            github.com/Minoneshan/Waterbridge_MM
+          </a>
+          <br/>
+          <strong>Submission:</strong> August 1-5, 2025 (LaTeX formatting update August 5)
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Usage ===== -->
+    <section class="section">
+      <div class="container">
+        <h2>Reproducing the Analysis</h2>
+        <p>All results are fully reproducible using the Python analysis pipeline:</p>
+        <pre style="background: var(--code-bg); padding: 16px; border-radius: 8px; overflow-x: auto"><code class="language-bash"># Activate environment
+conda activate waterbridge_mm
+
+# Run complete analysis
+python code/analysis.py
+
+# Run statistical validation
+python code/statistical_tests.py
+
+# Generate sensitivity analysis
+python code/generate_sensitivity.py
+
+# Compile LaTeX report
+make pdf</code></pre>
+      </div>
+    </section>
+
+    <!-- ===== Next ===== -->
+    <section class="section" style="background: var(--bg-soft)">
+      <div class="container" style="text-align: center">
+        <h2 style="margin-bottom: 24px">Ready to Dive Deeper?</h2>
+        <p style="color: var(--text-muted); margin-bottom: 32px">
+          Read the full technical documentation for complete methodology, data sources, and validation details.
+        </p>
+        <a href="./docs.html" class="btn btn-primary" style="display: inline-block">
+          Read Full Documentation →
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="site-footer">
+      <div class="container foot-row">
+        <div>© <span id="year"></span> Mo Minoneshan</div>
+        <div class="foot-links">
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/Minoneshan" target="_blank" rel="noopener">GitHub</a>
+          <a href="../../contact.html">Email</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

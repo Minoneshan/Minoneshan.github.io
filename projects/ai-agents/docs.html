@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AlphaAgents Documentation</title>
+    <meta name="description" content="Complete technical documentation for the AlphaAgents multi-agent research platform." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/docs.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
+  </head>
+  <body class="docs-page">
+    <!-- ===== Header ===== -->
+    <header class="site-header">
+      <div class="container nav">
+        <a href="../../index.html" class="brand">
+          Mo Minoneshan
+          <span class="brand-sub">Quantitative Research</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../projects.html">Projects</a></li>
+          <li><a href="../../notes.html">Notes</a></li>
+          <li><a href="../../resume.html">Resume</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="docs-container">
+      <!-- ===== Sidebar ===== -->
+      <aside class="docs-sidebar">
+        <button class="docs-sidebar-toggle">☰ Contents</button>
+        <nav class="docs-nav">
+          <input type="text" class="docs-search" placeholder="Search docs..." />
+          <div class="docs-nav-section">
+            <h3>Overview</h3>
+            <ul>
+              <li><a href="#overview" class="docs-nav-link">Overview</a></li>
+              <li><a href="#motivation" class="docs-nav-link">Motivation</a></li>
+            </ul>
+          </div>
+          <div class="docs-nav-section">
+            <h3>Architecture</h3>
+            <ul>
+              <li><a href="#architecture" class="docs-nav-link">System Design</a></li>
+              <li><a href="#layers" class="docs-nav-link">Seven Layers</a></li>
+              <li><a href="#agents" class="docs-nav-link">Specialist Agents</a></li>
+            </ul>
+          </div>
+          <div class="docs-nav-section">
+            <h3>Implementation</h3>
+            <ul>
+              <li><a href="#setup" class="docs-nav-link">Setup & Installation</a></li>
+              <li><a href="#usage" class="docs-nav-link">Usage Patterns</a></li>
+              <li><a href="#configuration" class="docs-nav-link">Configuration</a></li>
+            </ul>
+          </div>
+          <div class="docs-nav-section">
+            <h3>Advanced Topics</h3>
+            <ul>
+              <li><a href="#rag" class="docs-nav-link">RAG Pipeline</a></li>
+              <li><a href="#backtesting" class="docs-nav-link">Backtesting</a></li>
+              <li><a href="#rlhf" class="docs-nav-link">RLHF & Feedback</a></li>
+            </ul>
+          </div>
+          <div class="docs-nav-section">
+            <h3>Reference</h3>
+            <ul>
+              <li><a href="#modules" class="docs-nav-link">Module Reference</a></li>
+              <li><a href="#troubleshooting" class="docs-nav-link">Troubleshooting</a></li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- ===== Main Content ===== -->
+      <main class="docs-main">
+        <div class="docs-header">
+          <h1>AlphaAgents Multi-Agent Research Platform</h1>
+          <p class="docs-subtitle">Production-grade LLM-powered equity research framework</p>
+          <div class="docs-header-actions">
+            <a href="https://github.com/Minoneshan/DL_FE_01" class="btn btn-sm" target="_blank">
+              → View on GitHub
+            </a>
+            <a href="./index.html" class="btn btn-sm btn-ghost">
+              ← Back to Project
+            </a>
+          </div>
+        </div>
+
+        <!-- ===== Overview ===== -->
+        <section id="overview">
+          <h2>0. Overview</h2>
+          <p>
+            AlphaAgents is a modular, production-grade multi-agent research platform that orchestrates
+            LLM-powered specialist agents (fundamental analyst, valuation expert, sentiment analyst) to
+            debate and synthesize equity research into actionable portfolio decisions. Inspired by the
+            AlphaAgents paper, this implementation separates concerns across seven architectural layers:
+            data ingestion, agent expertise, orchestration, backtesting, evaluation, human feedback, and
+            application delivery.
+          </p>
+          <div class="callout callout-key">
+            <strong>Core Innovation:</strong> Rather than monolithic scoring, specialist agents argue about
+            each stock via a debate mechanism, reaching consensus through a collaborator orchestrator while
+            maintaining human-in-the-loop guardrails for risk management.
+          </div>
+          <p>
+            The system is designed for team collaboration: fundamental team owns the fundamental agent,
+            sentiment team owns sentiment analysis, etc., with clean module boundaries and comprehensive testing.
+          </p>
+        </section>
+
+        <!-- ===== Motivation ===== -->
+        <section id="motivation">
+          <h2>1. Motivation</h2>
+          <p>
+            Modern quantitative equity research requires synthesizing multiple data streams:
+          </p>
+          <ul>
+            <li><strong>Fundamental Analysis</strong> – Deep dive into financial statements, management quality, competitive position</li>
+            <li><strong>Valuation Analysis</strong> – Technical factors, mean reversion, relative pricing</li>
+            <li><strong>Sentiment Analysis</strong> – News narratives, market sentiment, consensus shifts</li>
+            <li><strong>Macro Context</strong> – Economic cycles, sector momentum, cross-asset relationships</li>
+          </ul>
+          <p>
+            Traditional approaches use rigid scoring systems where signals are weighted and summed. This limits
+            reasoning depth and makes it difficult to adjust weights in real-time based on market regime.
+          </p>
+          <p>
+            <strong>AlphaAgents solves this</strong> by having specialist agents collaborate through debate. Each agent
+            brings expertise, supports its opinion with evidence from its data stream, and the collaborator
+            orchestrates consensus. This approach:
+          </p>
+          <ul>
+            <li>✅ Allows rich, multi-modal reasoning (text from filings, numerical technical indicators, news sentiment)</li>
+            <li>✅ Enables easy weight adjustment: just re-prompt the collaborator</li>
+            <li>✅ Provides audit trail: every decision includes agent rationales</li>
+            <li>✅ Supports learning: human feedback logged for RLHF fine-tuning</li>
+          </ul>
+        </section>
+
+        <!-- ===== Architecture ===== -->
+        <section id="architecture">
+          <h2>2. System Architecture</h2>
+          <p>The AlphaAgents system is built on seven architectural layers:</p>
+          <div style="background: var(--bg-soft); padding: 20px; border-radius: 8px; margin: 16px 0">
+            <ol>
+              <li><strong>Data Layer</strong> – Market connectors, filing downloader, news aggregator</li>
+              <li><strong>Agent Layer</strong> – Fundamental, valuation, sentiment specialists</li>
+              <li><strong>Utilities</strong> – Signal normalization, JSON parsing, cross-cutting helpers</li>
+              <li><strong>Analytics</strong> – Single-asset and portfolio backtesting, performance metrics</li>
+              <li><strong>Orchestration</strong> – Pipeline configuration and execution runners</li>
+              <li><strong>Human Feedback</strong> – Analyst review, override logging, RLHF capture</li>
+              <li><strong>Application Layer</strong> – CLI entry points, Streamlit dashboards, API servers</li>
+            </ol>
+          </div>
+          <p>
+            This separation ensures that teams can work on specialized components without breaking the overall
+            pipeline. Data scientists improve sentiment analysis without touching backtesting logic.
+          </p>
+        </section>
+
+        <!-- ===== Layers ===== -->
+        <section id="layers">
+          <h2>3. The Seven Layers in Detail</h2>
+          
+          <h3>3.1 Data Layer (src/data/)</h3>
+          <p>Responsible for fetching and normalizing market data, SEC filings, and news.</p>
+          <ul>
+            <li><strong>market.py</strong> – OHLCV history via Yahoo Finance, aligned DataFrames</li>
+            <li><strong>filings.py</strong> – SEC Edgar integration, 10-K/10-Q parsing, LLamaIndex document wrapping</li>
+            <li><strong>news.py</strong> – News article aggregation, timestamp normalization, optional body hydration</li>
+          </ul>
+
+          <h3>3.2 Agent Layer (src/agents/)</h3>
+          <p>Specialist agents that produce structured opinions (BUY/HOLD/SELL) from their data domains.</p>
+          <ul>
+            <li><strong>fundamental.py</strong> – RAG over SEC filings, produces fundamental conviction (Fast/Full mode)</li>
+            <li><strong>valuation.py</strong> – Technical indicators + relative valuation, short-horizon signals</li>
+            <li><strong>sentiment.py</strong> – Article summarization, recency-weighted sentiment aggregation</li>
+            <li><strong>collaborator.py</strong> – Orchestrates debate, logs decisions, synthesizes consensus</li>
+          </ul>
+
+          <h3>3.3 Orchestration Layer (src/orchestration/)</h3>
+          <p>Wires agents into repeatable workflows for single-ticker and multi-ticker analysis.</p>
+          <pre><code class="language-python">result = run_portfolio(
+    tickers=["AAPL", "MSFT", "META"],
+    lookback_days=45,
+    fast_mode=False,
+    include_sentiment=True
+)</code></pre>
+
+          <h3>3.4 Analytics Layer (src/backtesting/ + src/evaluation/)</h3>
+          <p>Converts agent signals into returns, computes performance metrics.</p>
+          <ul>
+            <li>Single-asset and portfolio backtesting with rolling metrics</li>
+            <li>Sharpe ratio, drawdown, coverage analysis</li>
+            <li>Agent contribution attribution</li>
+          </ul>
+
+          <h3>3.5 Human Feedback Loop (src/feedback/)</h3>
+          <p>Captures analyst overrides for RLHF experiments and audit trails.</p>
+
+          <h3>3.6 Application Layer (apps/)</h3>
+          <p>Entry points for running the system: CLIs, dashboards, batch pipelines.</p>
+        </section>
+
+        <!-- ===== Agents Detail ===== -->
+        <section id="agents">
+          <h2>4. Specialist Agents</h2>
+          
+          <h3>4.1 Fundamental Agent</h3>
+          <p>
+            Reads SEC filings via LLamaIndex retrieval-augmented generation (RAG), prompts an LLM to form
+            a structured opinion on business fundamentals.
+          </p>
+          <h4>Key Features:</h4>
+          <ul>
+            <li><strong>RAG Pipeline:</strong> 10-K/10-Q cached as LLamaIndex documents, queried by the LLM</li>
+            <li><strong>Fast Mode:</strong> Heuristic fallback (return None or neutral opinion) if LLM unavailable</li>
+            <li><strong>LLM Selection:</strong> Configurable via <code>FUNDAMENTAL_PROVIDER</code> env (ollama/openai)</li>
+            <li><strong>Output:</strong> Structured JSON with signal (BUY/HOLD/SELL) and rationale</li>
+          </ul>
+
+          <h3>4.2 Valuation Agent</h3>
+          <p>
+            Computes technical indicators and relative valuation metrics, produces a conviction signal
+            on short-term price movements.
+          </p>
+          <h4>Key Metrics:</h4>
+          <ul>
+            <li>Momentum (RSI, MACD)</li>
+            <li>Mean reversion (Bollinger Bands)</li>
+            <li>Relative PE, PB, EV/EBITDA vs. peers</li>
+            <li>Profit margins, ROE, debt ratios</li>
+          </ul>
+
+          <h3>4.3 Sentiment Agent</h3>
+          <p>
+            Aggregates recent news articles, computes article-level sentiment (via LLM or heuristic),
+            produces a recency-weighted narrative on market perception.
+          </p>
+          <h4>Output:</h4>
+          <ul>
+            <li>Numeric sentiment score (-1 to +1)</li>
+            <li>Key narrative themes extracted from top articles</li>
+            <li>Consensus summary (optional LLM synthesis)</li>
+          </ul>
+
+          <h3>4.4 Collaborator Agent</h3>
+          <p>
+            Takes specialist opinions and orchestrates debate. Prompts the LLM to weigh evidence from
+            all three agents and produce a final consensus signal.
+          </p>
+          <h4>Output:</h4>
+          <pre><code class="language-json">{
+  "ticker": "AAPL",
+  "final_signal": "BUY",
+  "confidence": 0.78,
+  "rationale": "Strong fundamental position offset by modest valuation concern, buoyed by positive sentiment shift",
+  "agent_votes": {
+    "fundamental": "BUY",
+    "valuation": "HOLD",
+    "sentiment": "BUY"
+  },
+  "position_weight": 0.22
+}</code></pre>
+        </section>
+
+        <!-- ===== Setup ===== -->
+        <section id="setup">
+          <h2>5. Setup & Installation</h2>
+
+          <h3>5.1 Prerequisites</h3>
+          <ul>
+            <li>Python ≥ 3.11</li>
+            <li>Conda or Mamba for environment management</li>
+            <li>Optional: Ollama (for local LLM) or OpenAI API key</li>
+          </ul>
+
+          <h3>5.2 Installation</h3>
+          <pre><code class="language-bash"># Clone repository
+git clone https://github.com/Minoneshan/DL_FE_01
+cd DL_FE_01
+
+# Create environment
+conda env create -f environment.yml
+conda activate ai_agents
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Optional: install Ollama
+# brew install ollama (macOS)
+# https://ollama.ai (Linux/Windows)
+</code></pre>
+
+          <h3>5.3 LLM Provider Setup</h3>
+          <p><strong>Option A: Ollama (Local, No Cost)</strong></p>
+          <pre><code class="language-bash">ollama pull mistral
+export OLLAMA_MODEL=mistral
+export FUNDAMENTAL_PROVIDER=ollama
+export SENTIMENT_PROVIDER=ollama</code></pre>
+
+          <p><strong>Option B: OpenAI (Premium Quality)</strong></p>
+          <pre><code class="language-bash">export OPENAI_API_KEY="sk-..."
+export OPENAI_MODEL="gpt-4o"
+export FUNDAMENTAL_PROVIDER="openai"
+export SENTIMENT_PROVIDER="openai"</code></pre>
+        </section>
+
+        <!-- ===== Usage ===== -->
+        <section id="usage">
+          <h2>6. Usage Patterns</h2>
+
+          <h3>6.1 Run the Portfolio Pipeline</h3>
+          <pre><code class="language-bash"># Zero-config mode (prompts "classic or alpha?")
+python -m apps.strategy_runner.app
+
+# Direct: Classic screening mode (20 candidates → 5-name portfolio)
+python -m apps.pipeline.app \
+  --strategy classic \
+  --limit 20 \
+  --target-count 5 \
+  --period 3mo
+
+# With guardrails (Alpha mode)
+python -m apps.pipeline.app \
+  --alpha-mode \
+  --alpha-auto-approve \
+  --limit 20 \
+  --target-count 5</code></pre>
+
+          <h3>6.2 Analyze a Single Ticker</h3>
+          <pre><code class="language-bash"># Fundamental analysis
+python -m apps.fundamental --ticker AAPL
+
+# Valuation analysis
+python -m apps.valuation --ticker AAPL
+
+# Sentiment analysis
+python -m apps.sentiment --ticker AAPL --days 7</code></pre>
+
+          <h3>6.3 Human-in-the-Loop Review</h3>
+          <pre><code class="language-bash">python -m apps.human_interface \
+  --tickers AAPL MSFT META \
+  --reviewer "Portfolio Manager" \
+  --limit 3</code></pre>
+          <p>
+            Analyst is prompted to approve/reject each basket. Overrides logged to JSONL for
+            reinforcement learning experiments.
+          </p>
+
+          <h3>6.4 Interactive Dashboard</h3>
+          <pre><code class="language-bash">streamlit run dashboard/app.py</code></pre>
+          <p>
+            Visualizes selected tickers, agent rationales, guardrail checks, and contribution to
+            portfolio risk.
+          </p>
+        </section>
+
+        <!-- ===== Configuration ===== -->
+        <section id="configuration">
+          <h2>7. Configuration & Customization</h2>
+          
+          <h3>7.1 Environment Variables</h3>
+          <table class="doc-table">
+            <thead>
+              <tr>
+                <th>Variable</th>
+                <th>Options</th>
+                <th>Default</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>FUNDAMENTAL_PROVIDER</code></td>
+                <td>ollama | openai</td>
+                <td>ollama</td>
+              </tr>
+              <tr>
+                <td><code>SENTIMENT_PROVIDER</code></td>
+                <td>ollama | openai</td>
+                <td>ollama</td>
+              </tr>
+              <tr>
+                <td><code>OPENAI_API_KEY</code></td>
+                <td>your-api-key</td>
+                <td>(empty)</td>
+              </tr>
+              <tr>
+                <td><code>OPENAI_MODEL</code></td>
+                <td>gpt-4o | gpt-4o-mini</td>
+                <td>gpt-4o-mini</td>
+              </tr>
+              <tr>
+                <td><code>OLLAMA_MODEL</code></td>
+                <td>mistral | gemma | etc</td>
+                <td>mistral</td>
+              </tr>
+              <tr>
+                <td><code>PIPELINE_MIN_AVG_IV</code></td>
+                <td>0.0 - 1.0</td>
+                <td>0.35</td>
+              </tr>
+              <tr>
+                <td><code>PIPELINE_MIN_TICKER_SHARPE</code></td>
+                <td>float</td>
+                <td>0.10</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>7.2 Per-Agent Configuration</h3>
+          <p>Each agent has its own fast/full mode and optional LLM overrides:</p>
+          <pre><code class="language-python">from src.agents import FundamentalAgent
+
+agent = FundamentalAgent(
+    ticker="AAPL",
+    fast_mode=False,  # Use full LLM reasoning
+    llm_provider="openai",  # Override env default
+)</code></pre>
+        </section>
+
+        <!-- ===== RAG ===== -->
+        <section id="rag">
+          <h2>8. RAG Pipeline (Retrieval-Augmented Generation)</h2>
+          <p>
+            The fundamental agent uses LLamaIndex to build a vector index over SEC filings,
+            enabling the LLM to retrieve and reason over relevant excerpts.
+          </p>
+          <h3>8.1 How It Works</h3>
+          <ol>
+            <li><strong>Download:</strong> Fetch 10-K/10-Q from SEC Edgar</li>
+            <li><strong>Parse:</strong> Extract structured tables and text sections</li>
+            <li><strong>Index:</strong> Create LLamaIndex document collection, auto-embed with sentence-transformers</li>
+            <li><strong>Query:</strong> Given a ticker, retrieve top-k relevant excerpts</li>
+            <li><strong>Prompt:</strong> LLM receives excerpts + question ("Is this a good investment?")</li>
+          </ol>
+
+          <h3>8.2 Performance</h3>
+          <ul>
+            <li>Typical latency: 2-5 seconds for full analysis (with OpenAI)</li>
+            <li>Token usage: ~2000-5000 tokens per filing analysis</li>
+            <li>Accuracy: LLM reasoning benefits from relevant excerpts (vs. full filing)</li>
+          </ul>
+        </section>
+
+        <!-- ===== Backtesting ===== -->
+        <section id="backtesting">
+          <h2>9. Backtesting & Evaluation</h2>
+          
+          <h3>9.1 Single-Ticker Backtest</h3>
+          <p>
+            Given agent signals (BUY/HOLD/SELL), backtest module converts them to positions
+            and computes returns.
+          </p>
+          <ul>
+            <li><strong>Position Sizing:</strong> Equal weight, or confidence-weighted</li>
+            <li><strong>Metrics:</strong> Sharpe, max drawdown, cumulative return</li>
+            <li><strong>Output:</strong> Equity curve, signal timeline, metrics summary</li>
+          </ul>
+
+          <h3>9.2 Portfolio Backtest</h3>
+          <p>
+            Multi-ticker version that rebalances daily based on agent decisions.
+          </p>
+          <ul>
+            <li>Aggregates single-ticker signals into portfolio positions</li>
+            <li>Tracks portfolio-level metrics (Sharpe, correlation, contribution)</li>
+            <li>Supports guardrail constraints (max sector exposure, min diversification)</li>
+          </ul>
+
+          <h3>9.3 Guardrails</h3>
+          <p>
+            Automatic portfolio construction safety constraints:
+          </p>
+          <ul>
+            <li><strong>Sharpe Threshold:</strong> Individual position must have Sharpe ≥ 0.10</li>
+            <li><strong>Diversification:</strong> Min 5-10 holdings, max 25%/position</li>
+            <li><strong>Sector Balance:</strong> Top 2 sectors max 40% of portfolio</li>
+            <li><strong>Relaxed Mode:</strong> Allow exceptions if at least 50% of constituents pass</li>
+          </ul>
+        </section>
+
+        <!-- ===== RLHF ===== -->
+        <section id="rlhf">
+          <h2>10. Human-in-the-Loop & RLHF</h2>
+          
+          <h3>10.1 Feedback Capture</h3>
+          <p>
+            Every analyst override is logged as JSON with original signal, revised opinion, and reasoning.
+          </p>
+          <pre><code class="language-json">{
+  "date": "2026-06-22",
+  "ticker": "AAPL",
+  "original_signal": "BUY",
+  "override_signal": "HOLD",
+  "reasoning": "Earnings beat priced in; risk/reward neutral",
+  "agent_rationales": {
+    "fundamental": "Strong moat, growing FCF",
+    "valuation": "Fair value, limited margin of safety",
+    "sentiment": "Positive on AI announcements"
+  }
+}</code></pre>
+
+          <h3>10.2 Using Feedback for RLHF</h3>
+          <p>
+            These feedback entries can be used to fine-tune the collaborator agent to better
+            weight specialist opinions or to calibrate agent confidence.
+          </p>
+          <ul>
+            <li>Analyze which agents tend to disagree with humans → improve prompts</li>
+            <li>Fine-tune smaller models on feedback dataset</li>
+            <li>Measure Brier score improvement over time</li>
+          </ul>
+        </section>
+
+        <!-- ===== Modules ===== -->
+        <section id="modules">
+          <h2>11. Module Reference</h2>
+          
+          <h3>11.1 Core Modules</h3>
+          <table class="doc-table">
+            <tbody>
+              <tr>
+                <td><code>src.data.market</code></td>
+                <td>OHLCV fetching, price alignment</td>
+              </tr>
+              <tr>
+                <td><code>src.data.filings</code></td>
+                <td>SEC Edgar integration, parsing</td>
+              </tr>
+              <tr>
+                <td><code>src.data.news</code></td>
+                <td>News article aggregation</td>
+              </tr>
+              <tr>
+                <td><code>src.agents.fundamental</code></td>
+                <td>RAG-powered fundamental analysis</td>
+              </tr>
+              <tr>
+                <td><code>src.agents.valuation</code></td>
+                <td>Technical + relative valuation</td>
+              </tr>
+              <tr>
+                <td><code>src.agents.sentiment</code></td>
+                <td>Sentiment aggregation</td>
+              </tr>
+              <tr>
+                <td><code>src.backtesting</code></td>
+                <td>Signal-to-returns conversion</td>
+              </tr>
+              <tr>
+                <td><code>src.evaluation</code></td>
+                <td>Performance metrics, dashboards</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- ===== Troubleshooting ===== -->
+        <section id="troubleshooting">
+          <h2>12. Troubleshooting</h2>
+          
+          <h3>12.1 LLM Not Responding</h3>
+          <p><strong>Issue:</strong> Timeout when calling fundamental or sentiment agent.</p>
+          <p><strong>Solution:</strong></p>
+          <ul>
+            <li>Check Ollama is running: <code>curl http://localhost:11434/api/tags</code></li>
+            <li>Or check OpenAI API key is set: <code>echo $OPENAI_API_KEY</code></li>
+            <li>Increase timeout: <code>export FUNDAMENTAL_TIMEOUT=120</code></li>
+          </ul>
+
+          <h3>12.2 Filing Download Fails</h3>
+          <p><strong>Issue:</strong> SEC Edgar returns 429 (rate limit).</p>
+          <p><strong>Solution:</strong> Add delay between requests, or use cached local copies.</p>
+
+          <h3>12.3 Portfolio Not Forming</h3>
+          <p><strong>Issue:</strong> Guardrails reject all candidates.</p>
+          <p><strong>Solution:</strong> Enable <code>--relaxed-guardrails</code> to allow 50% compliance.</p>
+
+          <h3>12.4 Dashboard Not Loading</h3>
+          <p><strong>Issue:</strong> Streamlit app crashes on startup.</p>
+          <p><strong>Solution:</strong> First run pipeline with <code>--export-pipeline</code> to create dashboard data.</p>
+        </section>
+
+        <!-- ===== Footer ===== -->
+        <section style="margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--border)">
+          <div style="display: flex; justify-content: space-between; align-items: center">
+            <div>
+              <a href="./index.html" class="btn btn-secondary btn-sm">← Back to Project</a>
+            </div>
+            <div style="text-align: right; font-size: 0.9rem; color: var(--text-muted)">
+              <p style="margin: 0">Last updated: June 2026</p>
+              <p style="margin: 4px 0 0">
+                <a href="https://github.com/Minoneshan/DL_FE_01" target="_blank">View on GitHub</a>
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/docs.js"></script>
+  </body>
+</html>

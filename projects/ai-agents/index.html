@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AlphaAgents Multi-Agent Research Platform</title>
+    <meta
+      name="description"
+      content="Multi-agent LLM framework for quantitative equity research and portfolio construction inspired by AlphaAgents paper."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+  </head>
+  <body>
+    <!-- ===== Header ===== -->
+    <header class="site-header">
+      <div class="container nav">
+        <a href="../../index.html" class="brand">
+          Mo Minoneshan
+          <span class="brand-sub">Quantitative Research</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../projects.html">Projects</a></li>
+          <li><a href="../../notes.html">Notes</a></li>
+          <li><a href="../../resume.html">Resume</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- ===== Breadcrumb ===== -->
+    <div class="section-tight" style="padding: 32px 0 16px; border-bottom: 1px solid var(--border)">
+      <div class="container">
+        <p class="muted" style="margin: 0; font-size: 0.9rem">
+          <a href="../../index.html">Home</a> / 
+          <a href="../../projects.html">Projects</a> / 
+          <span style="color: var(--text)">AlphaAgents</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- ===== Hero ===== -->
+    <section class="section">
+      <div class="container">
+        <p class="eyebrow">Advanced AI & Multi-Agent Systems</p>
+        <h1 style="margin-bottom: 16px">
+          AlphaAgents Multi-Agent Research Platform
+        </h1>
+        <p class="lede">
+          Production-grade multi-agent LLM framework for quantitative equity research,
+          fundamental analysis, and portfolio construction. Inspired by the AlphaAgents paper,
+          this system orchestrates specialist agents (fundamental, valuation, sentiment) to
+          debate and synthesize trading signals with human-in-the-loop oversight.
+        </p>
+
+        <div class="btn-row" style="margin-top: 24px">
+          <a href="./demo.html" class="btn btn-primary">System Overview</a>
+          <a href="./docs.html" class="btn btn-secondary">Full Documentation</a>
+          <a
+            href="https://github.com/Minoneshan/DL_FE_01"
+            class="btn btn-ghost"
+            target="_blank"
+            rel="noopener"
+            >View on GitHub</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ===== Problem ===== -->
+    <section class="section">
+      <div class="container">
+        <h2>The Challenge</h2>
+        <p>
+          Modern quantitative investing requires synthesizing disparate data sources—SEC filings,
+          market prices, news sentiment—into actionable portfolio decisions. Traditional approaches
+          rely on rigid scoring systems. This project implements an LLM-powered debate mechanism where
+          specialist agents argue about each stock, reaching consensus via a collaborator orchestrator.
+        </p>
+        <div class="callout callout-key">
+          <strong>Key Innovation:</strong> Specialist debate loop where fundamental, valuation, and
+          sentiment agents reach consensus on BUY/HOLD/SELL, with human-in-the-loop guardrails and
+          RLHF-ready feedback capture.
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Architecture ===== -->
+    <section class="section">
+      <div class="container">
+        <h2>System Architecture</h2>
+        <div class="card-grid" style="grid-template-columns: 1fr 1fr; gap: 24px">
+          <div style="padding: 20px; background: var(--bg-soft); border-radius: var(--radius-sm)">
+            <h3 style="margin-top: 0">7-Layer Architecture</h3>
+            <ol style="margin: 12px 0">
+              <li><strong>Data Layer</strong> – Market data, SEC filings, news ingestion</li>
+              <li><strong>Agent Layer</strong> – Fundamental, valuation, sentiment specialists</li>
+              <li><strong>Orchestration</strong> – Debate loop, consensus building</li>
+              <li><strong>Backtesting</strong> – Signal-to-returns conversion</li>
+              <li><strong>Evaluation</strong> – Performance metrics & dashboards</li>
+              <li><strong>Human Feedback</strong> – Analyst overrides & RLHF logging</li>
+              <li><strong>Application</strong> – CLIs & Streamlit dashboards</li>
+            </ol>
+          </div>
+          <div style="padding: 20px; background: var(--bg-soft); border-radius: var(--radius-sm)">
+            <h3 style="margin-top: 0">Key Features</h3>
+            <ul style="margin: 12px 0">
+              <li>🤖 <strong>Multi-Agent Debate</strong> – Collaborator orchestrates specialist consensus</li>
+              <li>📊 <strong>RAG-Powered Analysis</strong> – LLamaIndex over SEC filings</li>
+              <li>⚙️ <strong>Flexible LLM Providers</strong> – Ollama, OpenAI, or hybrid</li>
+              <li>🔄 <strong>Human-in-the-Loop</strong> – Analyst overrides & feedback capture</li>
+              <li>📈 <strong>Full Backtesting</strong> – Single & multi-ticker portfolio analysis</li>
+              <li>🧪 <strong>Modular Design</strong> – Independent specialist development</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Highlights ===== -->
+    <section class="section">
+      <div class="container">
+        <h2>Key Achievements</h2>
+        <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px">
+          <div class="card-highlight">
+            <h3>100% Quantitative Coverage</h3>
+            <p>All 25 equity selection forecasts backed by specialized agent modules & econometric models.</p>
+          </div>
+          <div class="card-highlight">
+            <h3>Production-Ready Architecture</h3>
+            <p>Separated library code (src/) from execution (apps/) enables team-scale parallel development.</p>
+          </div>
+          <div class="card-highlight">
+            <h3>Flexible LLM Integration</h3>
+            <p>Configurable per-agent LLM routing (Ollama local, OpenAI, hybrid) without code changes.</p>
+          </div>
+          <div class="card-highlight">
+            <h3>Human-in-the-Loop Framework</h3>
+            <p>Analyst overrides logged as JSONL for reinforcement learning fine-tuning experiments.</p>
+          </div>
+          <div class="card-highlight">
+            <h3>End-to-End Reproducibility</h3>
+            <p>Complete pipeline from data hydration through backtest with audit logging & dashboards.</p>
+          </div>
+          <div class="card-highlight">
+            <h3>Strategy Alpha Workflow</h3>
+            <p>"Screen 20, ship 5" competition-style portfolio selection with guardrails & sector momentum.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Tech Stack ===== -->
+    <section class="section">
+      <div class="container">
+        <h2>Technology Stack</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px">
+          <div>
+            <h3>Languages & Frameworks</h3>
+            <ul class="tech-list">
+              <li><strong>Python</strong> – Core orchestration & agents</li>
+              <li><strong>LlamaIndex</strong> – RAG over SEC filings</li>
+              <li><strong>PyTorch</strong> – Sentiment embeddings (sentence-transformers)</li>
+              <li><strong>Pandas & NumPy</strong> – Data manipulation</li>
+              <li><strong>Streamlit</strong> – Interactive dashboards</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Data & LLM Infrastructure</h3>
+            <ul class="tech-list">
+              <li><strong>Yahoo Finance</strong> – Market data connector</li>
+              <li><strong>SEC Edgar</strong> – 10-K/10-Q filings</li>
+              <li><strong>Ollama</strong> – Local LLM deployment</li>
+              <li><strong>OpenAI API</strong> – Premium LLM access</li>
+              <li><strong>pgmpy</strong> – Bayesian network analysis</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Spec ===== -->
+    <section class="section" style="background: var(--bg-soft)">
+      <div class="container">
+        <h2>Project Specifications</h2>
+        <table class="doc-table">
+          <tbody>
+            <tr>
+              <td><strong>Repository</strong></td>
+              <td><a href="https://github.com/Minoneshan/DL_FE_01" target="_blank">github.com/Minoneshan/DL_FE_01</a></td>
+            </tr>
+            <tr>
+              <td><strong>Primary Language</strong></td>
+              <td>Python (76.8% Jupyter, 21.6% production Python)</td>
+            </tr>
+            <tr>
+              <td><strong>Architecture</strong></td>
+              <td>7-layer modular multi-agent system with RAG</td>
+            </tr>
+            <tr>
+              <td><strong>Key Innovation</strong></td>
+              <td>Specialist agent debate + human-in-the-loop guardrails</td>
+            </tr>
+            <tr>
+              <td><strong>LLM Flexibility</strong></td>
+              <td>Ollama-only, OpenAI-only, or hybrid per-agent routing</td>
+            </tr>
+            <tr>
+              <td><strong>Backtesting</strong></td>
+              <td>Single-asset & portfolio-level with rolling metrics</td>
+            </tr>
+            <tr>
+              <td><strong>Strategy Modes</strong></td>
+              <td>Classic scoring, Alpha (guardrail-constrained), custom workflows</td>
+            </tr>
+            <tr>
+              <td><strong>Feedback Loop</strong></td>
+              <td>JSONL-logged analyst overrides for RLHF experiments</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="section">
+      <div class="container" style="text-align: center">
+        <h2 style="margin-bottom: 24px">Explore the Full Details</h2>
+        <p style="font-size: 1.05rem; color: var(--text-muted); margin-bottom: 32px">
+          Read the complete system architecture, API reference, and implementation patterns.
+        </p>
+        <a href="./docs.html" class="btn btn-primary" style="display: inline-block">
+          Read Documentation →
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="site-footer">
+      <div class="container foot-row">
+        <div>© <span id="year"></span> Mo Minoneshan</div>
+        <div class="foot-links">
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener"
+            >LinkedIn</a
+          >
+          <a href="https://github.com/Minoneshan" target="_blank" rel="noopener"
+            >GitHub</a
+          >
+          <a href="../../contact.html">Email</a>
+        </div>
+      </div>
+    </footer>
+
+    <style>
+      .card-highlight {
+        padding: 24px;
+        background: var(--bg-soft);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+      }
+
+      .card-highlight h3 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        color: var(--accent);
+        font-size: 1.05rem;
+      }
+
+      .card-highlight p {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .tech-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .tech-list li {
+        padding: 8px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .tech-list li:last-child {
+        border-bottom: none;
+      }
+
+      .callout-key {
+        background: #dbeafe;
+        border-left: 4px solid var(--accent);
+        padding: 16px;
+        border-radius: 4px;
+        color: var(--text);
+      }
+    </style>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
