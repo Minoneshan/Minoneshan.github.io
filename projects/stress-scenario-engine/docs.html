@@ -181,7 +181,7 @@
           <li><a href="../../index.html">Home</a></li>
           <li><a href="../../projects.html">Projects</a></li>
           <li><a href="../../notes.html">Notes</a></li>
-          <li><a href="../../resume.html">Resume</a></li>
+          <li><a href="../../resume.html">CV</a></li>
           <li><a href="../../contact.html">Contact</a></li>
         </ul>
       </div>
@@ -301,37 +301,37 @@
               <tr>
                 <td><strong>1. Data Layer</strong></td>
                 <td>Bloomberg data ingestion, cleaning (ffill, holiday handling)</td>
-                <td>✅ MVP Complete</td>
+                <td>Complete</td>
               </tr>
               <tr>
                 <td><strong>2. Screening</strong></td>
                 <td>Tier A universe selection (completion ≥90%, years ≥10)</td>
-                <td>✅ MVP Complete</td>
+                <td>Complete</td>
               </tr>
               <tr>
                 <td><strong>3. Transforms</strong></td>
                 <td>Per-asset-class: equity/commodity/FX → pct_change, rates → diff()</td>
-                <td>✅ MVP Complete</td>
+                <td>Complete</td>
               </tr>
               <tr>
                 <td><strong>4. Statistics</strong></td>
                 <td>Covariance estimation (sample, EWMA, Ledoit-Wolf)</td>
-                <td>✅ MVP Complete</td>
+                <td>Complete</td>
               </tr>
               <tr>
                 <td><strong>5. Conditional Gaussian</strong></td>
                 <td>Core engine: condition on pinned shocks, compute implied means</td>
-                <td>✅ MVP Complete</td>
+                <td>Complete</td>
               </tr>
               <tr>
                 <td><strong>6. Validation</strong></td>
                 <td>Multicollinearity checks, sanity tests, historical replay</td>
-                <td>✅ MVP Complete</td>
+                <td>Complete</td>
               </tr>
               <tr>
                 <td><strong>7. Application</strong></td>
                 <td>CLI, Streamlit dashboard, Jupyter notebook UI (ipywidgets)</td>
-                <td>⏳ Phase 2</td>
+                <td>Phase 2</td>
               </tr>
             </table>
 
@@ -368,25 +368,25 @@
                 <td><strong>A</strong></td>
                 <td>Completion ≥90% AND Years ≥10</td>
                 <td>28 tickers</td>
-                <td>✅ MVP fit</td>
+                <td>MVP fit</td>
               </tr>
               <tr>
                 <td><strong>B</strong></td>
                 <td>Completion 50–90% OR Years 5–10</td>
                 <td>8 tickers</td>
-                <td>⏳ Phase 2 extension</td>
+                <td>Phase 2 extension</td>
               </tr>
               <tr>
                 <td><strong>C</strong></td>
                 <td>Years &lt;5 or very low completion</td>
                 <td>5 tickers</td>
-                <td>🚫 Exclude (insufficient history)</td>
+                <td>Exclude (insufficient history)</td>
               </tr>
               <tr>
                 <td><strong>D</strong></td>
                 <td>No data / completely missing</td>
                 <td>3 tickers</td>
-                <td>🚫 Skip</td>
+                <td>Skip</td>
               </tr>
             </table>
 
@@ -425,7 +425,7 @@
               Bloomberg data spans multiple exchanges (CME, EUREX, LME, ICE). Holiday calendars differ → NaN patterns.
             </p>
             <ul>
-              <li><strong>Strategy B (Recommended):</strong> ffill(limit=3) then dropna() → 5,178 rows (82% retention) ✅ MVP choice</li>
+              <li><strong>Strategy B (Recommended):</strong> ffill(limit=3) then dropna() → 5,178 rows (82% retention)</li>
               <li>Forward-fill up to 3 days (handles cross-exchange holiday misalignment), then drop rows with residual NaN.</li>
             </ul>
 
@@ -580,9 +580,9 @@ jupyter notebook 02_mvp_engine.ipynb
       <div class="container foot-row">
         <div>© <span id="year"></span> Mo Minoneshan</div>
         <div class="foot-links">
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/minoneshan/" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://github.com/Minoneshan" target="_blank" rel="noopener">GitHub</a>
-          <a href="../../contact.html">Email</a>
+          <a href="../../contact.html">Contact</a>
         </div>
       </div>
     </footer>

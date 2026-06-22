@@ -30,74 +30,83 @@
           <li><a href="../../index.html">Home</a></li>
           <li><a href="../../projects.html">Projects</a></li>
           <li><a href="../../notes.html">Notes</a></li>
-          <li><a href="../../resume.html">Resume</a></li>
+          <li><a href="../../resume.html">CV</a></li>
           <li><a href="../../contact.html">Contact</a></li>
         </ul>
       </div>
     </header>
 
-    <div class="docs-container">
+    <div class="docs-shell">
       <!-- ===== Sidebar ===== -->
-      <aside class="docs-sidebar">
-        <button class="docs-sidebar-toggle">☰ Contents</button>
-        <nav class="docs-nav">
-          <input type="text" class="docs-search" placeholder="Search docs..." />
-          <div class="docs-nav-section">
-            <h3>Overview</h3>
-            <ul>
-              <li><a href="#overview" class="docs-nav-link">Overview</a></li>
-              <li><a href="#motivation" class="docs-nav-link">Motivation</a></li>
-            </ul>
-          </div>
-          <div class="docs-nav-section">
-            <h3>Architecture</h3>
-            <ul>
-              <li><a href="#architecture" class="docs-nav-link">System Design</a></li>
-              <li><a href="#layers" class="docs-nav-link">Seven Layers</a></li>
-              <li><a href="#agents" class="docs-nav-link">Specialist Agents</a></li>
-            </ul>
-          </div>
-          <div class="docs-nav-section">
-            <h3>Implementation</h3>
-            <ul>
-              <li><a href="#setup" class="docs-nav-link">Setup & Installation</a></li>
-              <li><a href="#usage" class="docs-nav-link">Usage Patterns</a></li>
-              <li><a href="#configuration" class="docs-nav-link">Configuration</a></li>
-            </ul>
-          </div>
-          <div class="docs-nav-section">
-            <h3>Advanced Topics</h3>
-            <ul>
-              <li><a href="#rag" class="docs-nav-link">RAG Pipeline</a></li>
-              <li><a href="#backtesting" class="docs-nav-link">Backtesting</a></li>
-              <li><a href="#rlhf" class="docs-nav-link">RLHF & Feedback</a></li>
-            </ul>
-          </div>
-          <div class="docs-nav-section">
-            <h3>Reference</h3>
-            <ul>
-              <li><a href="#modules" class="docs-nav-link">Module Reference</a></li>
-              <li><a href="#troubleshooting" class="docs-nav-link">Troubleshooting</a></li>
-            </ul>
-          </div>
-        </nav>
+      <aside class="docs-sidebar" id="docs-sidebar">
+        <div class="docs-search">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input
+            id="docs-search-input"
+            type="text"
+            placeholder="Search this documentation…"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="docs-title-block">
+          <div class="doc-name">AlphaAgents Platform</div>
+          <div class="doc-meta">Mo Minoneshan · 2026</div>
+        </div>
+
+        <ul class="docs-nav">
+          <li><a href="#overview">Overview</a></li>
+          <li class="nav-part">Foundations</li>
+          <li><a href="#motivation"><span class="num">1</span>Motivation</a></li>
+          <li class="nav-part">Architecture</li>
+          <li><a href="#architecture"><span class="num">2</span>System Design</a></li>
+          <li><a href="#layers"><span class="num">3</span>Seven Layers</a></li>
+          <li><a href="#agents"><span class="num">4</span>Specialist Agents</a></li>
+          <li class="nav-part">Implementation</li>
+          <li><a href="#setup"><span class="num">5</span>Setup &amp; Installation</a></li>
+          <li><a href="#usage"><span class="num">6</span>Usage Patterns</a></li>
+          <li><a href="#configuration"><span class="num">7</span>Configuration</a></li>
+          <li class="nav-part">Advanced Topics</li>
+          <li><a href="#rag"><span class="num">8</span>RAG Pipeline</a></li>
+          <li><a href="#backtesting"><span class="num">9</span>Backtesting</a></li>
+          <li><a href="#rlhf"><span class="num">10</span>RLHF &amp; Feedback</a></li>
+          <li class="nav-part">Reference</li>
+          <li><a href="#modules"><span class="num">11</span>Module Reference</a></li>
+          <li><a href="#troubleshooting"><span class="num">12</span>Troubleshooting</a></li>
+        </ul>
+        <p class="no-results">No matching sections.</p>
       </aside>
 
       <!-- ===== Main Content ===== -->
       <main class="docs-main">
+        <button class="docs-sidebar-toggle" aria-label="Toggle contents">
+          ☰ Contents
+        </button>
+        <div class="docs-breadcrumb">
+          <a href="../../projects.html">Projects</a> /
+          <a href="index.html">AlphaAgents Platform</a> / Documentation
+        </div>
         <div class="docs-header">
           <h1>AlphaAgents Multi-Agent Research Platform</h1>
-          <p class="docs-subtitle">Production-grade LLM-powered equity research framework</p>
-          <div class="docs-header-actions">
-            <a href="https://github.com/Minoneshan/DL_FE_01" class="btn btn-sm" target="_blank">
-              → View on GitHub
-            </a>
-            <a href="./index.html" class="btn btn-sm btn-ghost">
-              ← Back to Project
-            </a>
-          </div>
+          <div class="author">Mo Minoneshan</div>
+          <div class="date">2026</div>
+        </div>
+        <div class="docs-actions">
+          <a href="https://github.com/Minoneshan/DL_FE_01" class="btn btn-secondary btn-sm" target="_blank" rel="noopener">GitHub</a>
+          <a href="index.html" class="btn btn-secondary btn-sm">Back to Project</a>
         </div>
 
+        <div class="docs-content">
         <!-- ===== Overview ===== -->
         <section id="overview">
           <h2>0. Overview</h2>
@@ -142,10 +151,10 @@
             orchestrates consensus. This approach:
           </p>
           <ul>
-            <li>✅ Allows rich, multi-modal reasoning (text from filings, numerical technical indicators, news sentiment)</li>
-            <li>✅ Enables easy weight adjustment: just re-prompt the collaborator</li>
-            <li>✅ Provides audit trail: every decision includes agent rationales</li>
-            <li>✅ Supports learning: human feedback logged for RLHF fine-tuning</li>
+            <li>Allows rich, multi-modal reasoning (text from filings, numerical technical indicators, news sentiment)</li>
+            <li>Enables easy weight adjustment: just re-prompt the collaborator</li>
+            <li>Provides audit trail: every decision includes agent rationales</li>
+            <li>Supports learning: human feedback logged for RLHF fine-tuning</li>
           </ul>
         </section>
 
@@ -609,6 +618,7 @@ agent = FundamentalAgent(
             </div>
           </div>
         </section>
+        </div>
       </main>
     </div>
 

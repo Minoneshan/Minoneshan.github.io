@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mo Minoneshan — Quantitative Finance &amp; Risk Research</title>
+    <title>Mo Minoneshan</title>
     <meta
       name="description"
-      content="Quantitative finance, risk modeling, and systematic research portfolio of Mo Minoneshan."
+      content="Mo Minoneshan — M.S. Financial Engineering candidate at Columbia University. Quantitative finance, machine learning, risk analytics, and investment research."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,15 +15,89 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <style>
+      /* ---- Minimal academic homepage ---- */
+      .home-intro {
+        padding: 56px 0 24px;
+      }
+      .home-grid {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 40px;
+        align-items: start;
+      }
+      .home-photo {
+        width: 220px;
+        height: auto;
+        border-radius: var(--radius-sm);
+        box-shadow: var(--shadow-sm);
+      }
+      .home-photo-caption {
+        font-size: 12px;
+        color: var(--text-muted);
+        margin-top: 8px;
+        text-align: center;
+      }
+      .home-name {
+        font-size: clamp(1.7rem, 3vw, 2.2rem);
+        margin: 0 0 14px;
+      }
+      .home-bio p {
+        color: var(--text-secondary);
+        font-size: 1.02rem;
+        margin: 0 0 14px;
+        max-width: 68ch;
+      }
+      .home-links {
+        margin-top: 18px;
+        font-size: 0.95rem;
+      }
+      .home-links a {
+        margin-right: 18px;
+      }
+      .home-section {
+        padding: 14px 0;
+      }
+      .home-section h2 {
+        font-size: 0.85rem;
+        text-transform: lowercase;
+        letter-spacing: 0.06em;
+        color: var(--text-muted);
+        font-weight: 600;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 8px;
+        margin: 28px 0 16px;
+      }
+      .home-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .home-list li {
+        padding: 7px 0;
+        color: var(--text-secondary);
+        font-size: 0.98rem;
+      }
+      .home-list li strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+      @media (max-width: 720px) {
+        .home-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        .home-photo {
+          width: 160px;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- ===== Header ===== -->
     <header class="site-header">
       <div class="container nav">
-        <a href="index.html" class="brand">
-          Mo Minoneshan
-          <span class="brand-sub">Quantitative Research</span>
-        </a>
+        <a href="index.html" class="brand">Mo Minoneshan</a>
         <button class="nav-toggle" aria-label="Toggle navigation">
           <span></span>
         </button>
@@ -31,272 +105,87 @@
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="projects.html">Projects</a></li>
           <li><a href="notes.html">Notes</a></li>
-          <li><a href="resume.html">Resume</a></li>
+          <li><a href="resume.html">CV</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
     </header>
 
-    <!-- ===== Hero ===== -->
-    <section class="hero">
+    <!-- ===== Intro ===== -->
+    <section class="home-intro">
       <div class="container">
-        <p class="eyebrow">Quantitative Researcher</p>
-        <h1>
-          Quantitative Finance, Risk Modeling, and
-          <span class="accent-line">Systematic Research</span>
-        </h1>
-        <p class="lede">
-          I build data-driven models and tools for scenario analysis, portfolio
-          risk, derivatives pricing, macro-financial forecasting, and systematic
-          investment research.
-        </p>
-        <div class="btn-row">
-          <a href="projects.html" class="btn btn-primary">View Projects</a>
-          <a href="Minoneshan_Resume.pdf" class="btn btn-secondary"
-            >Download Resume</a
-          >
-          <a
-            href="https://github.com/Minoneshan"
-            class="btn btn-ghost"
-            target="_blank"
-            rel="noopener"
-            >GitHub</a
-          >
-        </div>
-      </div>
-    </section>
-
-    <hr class="divider" />
-
-    <!-- ===== Profile ===== -->
-    <section class="section" style="background: var(--color-bg-soft)">
-      <div class="container">
-        <div class="profile-container">
-          <img src="profile.jpeg" alt="Mo Minoneshan" class="profile-photo" />
-          <div class="profile-info">
-            <h2>Mo Minoneshan</h2>
-            <p class="profile-subtitle">Quantitative Researcher</p>
-            <p class="profile-bio">
-              M.S. Financial Engineering, Columbia University <br>
-              B.S. Mathematics, University of Texas at Austin
+        <div class="home-grid">
+          <div>
+            <img src="profile.jpeg" alt="Mo Minoneshan" class="home-photo" />
+          </div>
+          <div class="home-bio">
+            <h1 class="home-name">Mo Minoneshan</h1>
+            <p>
+              I am an M.S. candidate in Financial Engineering at Columbia
+              University, with a B.S. in Mathematics from the University of Texas
+              at Austin.
             </p>
-            <p class="profile-bio">
-              NYC-based quantitative researcher focused on scenario analysis, risk modeling, and systematic investment research.
+            <p>
+              My interests sit at the intersection of quantitative finance,
+              machine learning, risk analytics, and investment research. I am
+              especially focused on building investment-facing tools that turn
+              complex market data into actionable insights — including portfolio
+              analytics, stress testing, AI-powered research workflows, and
+              systematic investment strategies.
             </p>
+            <p>
+              My experience spans product analytics, quantitative research, and
+              data science, including work at USAA, macro/ESG research at UT
+              Austin's Salem Center, fintech data science, and projects involving
+              multi-agent AI systems, copula-based tail risk modeling, Monte
+              Carlo pricing, and inflation forecasting. This summer, I am working
+              on industry projects with RBC Capital Markets and Lockwood
+              Analytics, focusing on conditional stress-scenario generation and
+              AI-based investment strategies.
+            </p>
+            <p>
+              Longer term, I am interested in hedge fund investing, systematic
+              macro, AI-driven asset management, and entrepreneurial finance.
+            </p>
+            <div class="home-links">
+              <a href="https://www.linkedin.com/in/minoneshan/" target="_blank" rel="noopener">LinkedIn</a>
+              <a href="https://github.com/Minoneshan" target="_blank" rel="noopener">GitHub</a>
+              <a href="projects.html">Projects</a>
+              <a href="contact.html">Contact</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <hr class="divider" />
-
-    <!-- ===== Selected Work ===== -->
-    <section class="section">
+    <!-- ===== Education ===== -->
+    <section class="home-section">
       <div class="container">
-        <div class="section-head">
-          <h2>Selected Work</h2>
-          <a href="projects.html" class="link-more">All projects →</a>
-        </div>
-        <div class="card-grid">
-          <!-- Card 1 -->
-          <article class="project-card">
-            <h3>
-              <a href="projects/stress-scenario-engine/index.html"
-                >Hypothetical Stress Scenario Engine</a
-              >
-            </h3>
-            <p class="desc">
-              Conditional scenario generation for cross-asset risk factors under
-              user-pinned shocks.
-            </p>
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">Streamlit</span>
-              <span class="tag">Copulas</span>
-              <span class="tag">PCA</span>
-            </div>
-            <div class="card-actions">
-              <a
-                href="projects/stress-scenario-engine/demo.html"
-                class="btn btn-secondary btn-sm"
-                >Demo</a
-              >
-              <a
-                href="projects/stress-scenario-engine/docs.html"
-                class="btn btn-secondary btn-sm"
-                >Documentation</a
-              >
-              <a
-                href="https://github.com/Minoneshan"
-                class="btn btn-ghost btn-sm"
-                target="_blank"
-                rel="noopener"
-                >GitHub</a
-              >
-            </div>
-          </article>
+        <h2>education</h2>
+        <ul class="home-list">
+          <li><strong>M.S., Financial Engineering</strong>, Columbia University.</li>
+          <li><strong>B.S., Mathematics</strong>, University of Texas at Austin.</li>
+        </ul>
 
-          <!-- Card 2 -->
-          <article class="project-card">
-            <h3>
-              <a href="projects/copula-var/index.html">Copula-Tail VaR Engine</a>
-            </h3>
-            <p class="desc">
-              EVT + t-copula tail-risk engine for multi-asset portfolios with
-              Expected Shortfall.
-            </p>
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">EVT</span>
-              <span class="tag">Copula</span>
-              <span class="tag">VaR</span>
-            </div>
-            <div class="card-actions">
-              <a
-                href="projects/copula-var/demo.html"
-                class="btn btn-secondary btn-sm"
-                >Demo</a
-              >
-              <a
-                href="projects/copula-var/docs.html"
-                class="btn btn-secondary btn-sm"
-                >Documentation</a
-              >
-              <a
-                href="https://github.com/Minoneshan"
-                class="btn btn-ghost btn-sm"
-                target="_blank"
-                rel="noopener"
-                >GitHub</a
-              >
-            </div>
-          </article>
+        <h2>experience</h2>
+        <ul class="home-list">
+          <li><strong>Quantitative Research (Industry Project)</strong>, RBC Capital Markets, 2026.</li>
+          <li><strong>AI Investment Strategies (Industry Project)</strong>, Lockwood Analytics, 2026.</li>
+          <li><strong>Macro / ESG Research</strong>, Salem Center, UT Austin.</li>
+          <li><strong>Product Management Analyst Intern</strong>, USAA.</li>
+        </ul>
 
-          <!-- Card 3 -->
-          <article class="project-card">
-            <h3>
-              <a href="projects/monte-carlo-pricer/index.html"
-                >Monte Carlo Option Pricer</a
-              >
-            </h3>
-            <p class="desc">
-              High-performance C++ option pricing with OpenMP acceleration and
-              variance reduction.
-            </p>
-            <div class="tags">
-              <span class="tag">C++</span>
-              <span class="tag">OpenMP</span>
-              <span class="tag">Derivatives</span>
-            </div>
-            <div class="card-actions">
-              <a
-                href="projects/monte-carlo-pricer/demo.html"
-                class="btn btn-secondary btn-sm"
-                >Demo</a
-              >
-              <a
-                href="projects/monte-carlo-pricer/docs.html"
-                class="btn btn-secondary btn-sm"
-                >Documentation</a
-              >
-              <a
-                href="https://github.com/Minoneshan"
-                class="btn btn-ghost btn-sm"
-                target="_blank"
-                rel="noopener"
-                >GitHub</a
-              >
-            </div>
-          </article>
+        <h2>interests</h2>
+        <ul class="home-list">
+          <li>Quantitative finance, systematic macro, and tail-risk modeling.</li>
+          <li>Machine learning and multi-agent AI systems for investment research.</li>
+          <li>Derivatives pricing, portfolio analytics, and stress testing.</li>
+        </ul>
 
-          <!-- Card 4 -->
-          <article class="project-card">
-            <h3>
-              <a href="projects/cpi-transformer/index.html"
-                >CPI Transformer Risk Dashboard</a
-              >
-            </h3>
-            <p class="desc">
-              Deep-learning inflation forecasting with an explainability
-              dashboard for macro risk.
-            </p>
-            <div class="tags">
-              <span class="tag">PyTorch</span>
-              <span class="tag">Transformers</span>
-              <span class="tag">Macro</span>
-            </div>
-            <div class="card-actions">
-              <a
-                href="projects/cpi-transformer/demo.html"
-                class="btn btn-secondary btn-sm"
-                >Demo</a
-              >
-              <a
-                href="projects/cpi-transformer/docs.html"
-                class="btn btn-secondary btn-sm"
-                >Documentation</a
-              >
-              <a
-                href="https://github.com/Minoneshan"
-                class="btn btn-ghost btn-sm"
-                target="_blank"
-                rel="noopener"
-                >GitHub</a
-              >
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Research Areas ===== -->
-    <section class="dark-section section">
-      <div class="container">
-        <div class="section-head">
-          <h2>Research Areas</h2>
-        </div>
-        <div class="pill-grid">
-          <span class="pill">Systematic Macro</span>
-          <span class="pill">Tail Risk</span>
-          <span class="pill">Derivatives Pricing</span>
-          <span class="pill">Portfolio Construction</span>
-          <span class="pill">Scenario Generation</span>
-          <span class="pill">Stochastic Modeling</span>
-          <span class="pill">Machine Learning in Finance</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Experience ===== -->
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <h2>Experience &amp; Education</h2>
-          <a href="resume.html" class="link-more">Full resume →</a>
-        </div>
-        <div class="timeline" style="max-width: 760px">
-          <div class="timeline-item">
-            <div>
-              <div class="role">M.S. Financial Engineering</div>
-              <div class="org">Columbia University</div>
-            </div>
-            <div class="when">Graduate</div>
-          </div>
-          <div class="timeline-item">
-            <div>
-              <div class="role">Product Management Analyst Intern</div>
-              <div class="org">USAA</div>
-            </div>
-            <div class="when">Internship</div>
-          </div>
-          <div class="timeline-item">
-            <div>
-              <div class="role">B.S. Mathematics</div>
-              <div class="org">University of Texas at Austin</div>
-            </div>
-            <div class="when">Undergraduate</div>
-          </div>
-        </div>
+        <h2>contact</h2>
+        <ul class="home-list">
+          <li><a href="https://www.linkedin.com/in/minoneshan/" target="_blank" rel="noopener">linkedin.com/in/minoneshan</a></li>
+        </ul>
       </div>
     </section>
 
@@ -305,13 +194,9 @@
       <div class="container foot-row">
         <div>© <span id="year"></span> Mo Minoneshan</div>
         <div class="foot-links">
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener"
-            >LinkedIn</a
-          >
-          <a href="https://github.com/Minoneshan" target="_blank" rel="noopener"
-            >GitHub</a
-          >
-          <a href="contact.html">Email</a>
+          <a href="https://www.linkedin.com/in/minoneshan/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/Minoneshan" target="_blank" rel="noopener">GitHub</a>
+          <a href="contact.html">Contact</a>
         </div>
       </div>
     </footer>
