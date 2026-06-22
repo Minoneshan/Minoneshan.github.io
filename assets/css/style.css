@@ -663,3 +663,62 @@ pre[class*="language-"],
     padding: 56px 0 40px;
   }
 }
+
+/* ---------- Profile Section ---------- */
+.profile-container {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 40px;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.profile-photo {
+  width: 140px;
+  height: 140px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  border: 2px solid var(--accent);
+  flex-shrink: 0;
+  box-shadow: var(--shadow);
+}
+
+.profile-info h2 {
+  margin: 0 0 8px;
+  color: var(--text);
+  font-size: 1.5rem;
+}
+
+.profile-subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0 0 12px;
+}
+
+.profile-bio {
+  color: var(--text-muted);
+  margin: 8px 0;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 640px) {
+  .profile-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px;
+    gap: 16px;
+  }
+
+  .profile-photo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile-info h2 {
+    font-size: 1.25rem;
+  }
+}
